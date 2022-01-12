@@ -3,7 +3,7 @@
 *.sublime-workspace
 todo.txt
 reset-files.bash
-
+.DS_Store
 *.tar.gz
 
 *.exe
