@@ -6,7 +6,7 @@
 #include <startoptionsrevealed.h>
 #include <ui_startoptionsrevealed.h>
 #include "guiutil.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/oasis/qtutils.h"
 #include <QLineEdit>
 
 

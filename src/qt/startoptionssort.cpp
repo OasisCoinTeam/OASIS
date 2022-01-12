@@ -5,7 +5,7 @@
 
 #include <startoptionssort.h>
 #include <ui_startoptionssort.h>
-#include "qt/pivx/qtutils.h"
+#include "qt/oasis/qtutils.h"
 #include <QtWidgets>
 #include <QTableWidget>
 #include <QListView>

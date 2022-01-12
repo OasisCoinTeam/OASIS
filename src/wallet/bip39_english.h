@@ -1991,7 +1991,7 @@ const char * const wordlist[] = {
         "volume",
         "vote",
         "voyage",
-        "wage",
+        "xos",
         "wagon",
         "wait",
         "walk",

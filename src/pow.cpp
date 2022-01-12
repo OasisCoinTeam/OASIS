@@ -22,7 +22,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if (Params().IsRegTestNet())
         return pindexLast->nBits;
 
-    /* current difficulty formula, ZENZO - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    /* current difficulty formula, OASIS - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -33,6 +33,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     uint256 PastDifficultyAverage;
     uint256 PastDifficultyAveragePrev;
     const Consensus::Params& consensus = Params().GetConsensus();
+
+    uint256 powLimit = consensus.powLimit;
+
 
     if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
         return consensus.powLimit.GetCompact();
@@ -125,19 +128,22 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     uint256 bnTarget;
 
     if (Params().IsRegTestNet()) return true;
-
+    
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+    
+        // Check range
+            if (fNegative || bnTarget.IsNull() || fOverflow || bnTarget > Params().GetConsensus().powLimit)
+                return error("CheckProofOfWork() : nBits below minimum work");
 
-    // Check range
-    if (fNegative || bnTarget.IsNull() || fOverflow || bnTarget > Params().GetConsensus().powLimit)
-        return error("CheckProofOfWork() : nBits below minimum work");
-
-    // Check proof of work matches claimed amount
-    if (hash > bnTarget)
-        return error("CheckProofOfWork() : hash doesn't match nBits");
-
+        // Check proof of work matches claimed amount
+            if (hash > bnTarget){
+                    LogPrintf("hash: %s  \nbnTarget: %s\n nBits: %08x\n", hash.GetHex(), bnTarget.GetHex(), nBits);
+                   return error("POW.CPP CheckProofOfWork() : hash doesn't match nBits");
+            }
+    
     return true;
 }
+
 
 uint256 GetBlockProof(const CBlockIndex& block)
 {

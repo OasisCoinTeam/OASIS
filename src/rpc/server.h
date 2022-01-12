@@ -128,7 +128,7 @@ public:
 };
 
 /**
- * ZENZO RPC command dispatcher.
+ * OASIS RPC command dispatcher.
  */
 class CRPCTable
 {

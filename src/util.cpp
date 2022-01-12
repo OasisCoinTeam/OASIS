@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/oasis-config.h"
 #endif
 
 #include "util.h"
@@ -85,7 +85,7 @@
 #include <openssl/rand.h>
 
 
-// ZENZO only features
+// OASIS only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -209,8 +209,8 @@ bool LogAcceptCategory(const char* category)
             const std::vector<std::string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new std::set<std::string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "zenzo" is a composite category enabling all ZENZO-related debug output
-            if (ptrCategory->count(std::string("zenzo"))) {
+            // "oasis" is a composite category enabling all OASIS-related debug output
+            if (ptrCategory->count(std::string("oasis"))) {
                 ptrCategory->insert(std::string("obfuscation"));
                 ptrCategory->insert(std::string("swiftx"));
                 ptrCategory->insert(std::string("masternode"));
@@ -376,7 +376,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "ZENZO";
+    const char* pszModule = "OASIS";
 #endif
     if (pex)
         return strprintf(
@@ -397,13 +397,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\Zenzo
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\Zenzo
-// Mac: ~/Library/Application Support/Zenzo
-// Unix: ~/.zenzo
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\Oasis
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\Oasis
+// Mac: ~/Library/Application Support/Oasis
+// Unix: ~/.oasis
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Zenzo";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Oasis";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -415,10 +415,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Zenzo";
+    return pathRet / "Oasis";
 #else
     // Unix
-    return pathRet / ".zenzo";
+    return pathRet / ".oasis";
 #endif
 #endif
 }
@@ -476,7 +476,7 @@ void ClearDatadirCache()
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "zenzo.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "oasis.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
@@ -502,18 +502,45 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty zenzo.conf if it does not exist
+        // Create empty oasis.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
-        if (configFile != NULL)
+        if (configFile != NULL){
+                        unsigned char rand_pwd[32];
+            char rpc_passwd[32];
+            GetRandBytes(rand_pwd, 32);
+            for (int i = 0; i < 32; i++) {
+                rpc_passwd[i] = (rand_pwd[i] % 26) + 97;
+            }
+            rpc_passwd[31] = '\0';
+            unsigned char rand_user[16];
+            char rpc_user[16];
+            GetRandBytes(rand_user, 16);
+            for (int i = 0; i < 16; i++) {
+                rpc_user[i] = (rand_user[i] % 26) + 97;
+            }
+            rpc_user[15] = '\0';
+            std::string strHeader = "rpcuser=";
+            strHeader += rpc_user;
+            strHeader += "\nrpcpassword=";
+            strHeader += rpc_passwd;
+            strHeader += "\nrpcport=3357\nport=3358\nrpcallowip=127.0.0.1";
+            strHeader += "\n#maxconnections=16\nlisten=1\ntxindex=1";
+            strHeader += "\n#####--- OFFCIAL OASIS DEFAULT ADDNODES ---#####";
+            strHeader += "\naddnode=seedone.oasisco.in\naddnode=seedtwo.oasisco.in\naddnode=seedthree.oasisco.in\naddnode=seedfour.oasisco.in\naddnode=seedfive.oasisco.in\naddnode=seedsix.oasisco.in";
+            strHeader += "\n#####--- MASTERNODE SPECIFIC OPTIONS for VPS ---#####";
+            strHeader += "\n#server=1\n#daemon=1\n#masternode=1\n#masternodeprivkey=\n#masternodeaddr=\n#externalip=";
+            strHeader += "\n#####--- LINUX ONLY SETTING ---#####\n#bind=ip_address:3358";
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
-        return; // Nothing to read, so just return
+        }
+        streamConfig.open(GetConfigFile());
     }
 
     std::set<std::string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override zenzo.conf
+        // Don't overwrite existing settings so command line settings override oasis.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);
@@ -528,7 +555,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 #ifndef WIN32
 boost::filesystem::path GetPidFile()
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", "zenzod.pid"));
+    boost::filesystem::path pathPidFile(GetArg("-pid", "oasisd.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }

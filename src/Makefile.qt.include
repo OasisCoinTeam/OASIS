@@ -2,10 +2,10 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/zenzo-qt
+bin_PROGRAMS += qt/oasis-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# zenzo qt core #
+# oasis qt core #
 include Makefile.qt_locale.include
 
 QT_FORMS_UI = \
@@ -24,54 +24,54 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/rpcconsole.ui \
-  qt/pivx/forms/loadingdialog.ui \
-  qt/pivx/forms/snackbar.ui \
-  qt/pivx/forms/navmenuwidget.ui \
-  qt/pivx/forms/lockunlock.ui \
-  qt/pivx/forms/expandablebutton.ui \
-  qt/pivx/forms/receivedialog.ui \
-  qt/pivx/forms/topbar.ui \
-  qt/pivx/forms/txrow.ui \
-  qt/pivx/forms/dashboardwidget.ui \
-  qt/pivx/forms/addresslabelrow.ui \
-  qt/pivx/forms/contactdropdownrow.ui \
-  qt/pivx/forms/mninfodialog.ui \
-  qt/pivx/forms/optionbutton.ui \
-  qt/pivx/forms/masternodewizarddialog.ui \
-  qt/pivx/forms/mnrow.ui \
-  qt/pivx/forms/masternodeswidget.ui \
-  qt/pivx/forms/myaddressrow.ui \
-  qt/pivx/forms/csrow.ui \
-  qt/pivx/forms/sendchangeaddressdialog.ui \
-  qt/pivx/forms/sendconfirmdialog.ui \
-  qt/pivx/forms/sendcustomfeedialog.ui \
-  qt/pivx/forms/sendchangeaddressdialog.ui \
-  qt/pivx/forms/sendmultirow.ui \
-  qt/pivx/forms/send.ui \
-  qt/pivx/forms/addnewaddressdialog.ui \
-  qt/pivx/forms/addnewcontactdialog.ui \
-  qt/pivx/forms/requestdialog.ui \
-  qt/pivx/forms/receivewidget.ui \
-  qt/pivx/forms/tooltipmenu.ui \
-  qt/pivx/forms/addresseswidget.ui \
-  qt/pivx/forms/defaultdialog.ui \
-  qt/pivx/forms/coldstakingwidget.ui \
-  qt/pivx/settings/forms/settingsbackupwallet.ui \
-  qt/pivx/settings/forms/settingsexportcsv.ui \
-  qt/pivx/settings/forms/settingsbittoolwidget.ui \
-  qt/pivx/settings/forms/settingsconsolewidget.ui \
-  qt/pivx/settings/forms/settingsdisplayoptionswidget.ui \
-  qt/pivx/settings/forms/settingsfaqwidget.ui \
-  qt/pivx/settings/forms/settingsinformationwidget.ui \
-  qt/pivx/settings/forms/settingsmainoptionswidget.ui \
-  qt/pivx/settings/forms/settingsmultisenddialog.ui \
-  qt/pivx/settings/forms/settingsmultisendwidget.ui \
-  qt/pivx/settings/forms/settingssignmessagewidgets.ui \
-  qt/pivx/settings/forms/settingswalletoptionswidget.ui \
-  qt/pivx/settings/forms/settingswalletrepairwidget.ui \
-  qt/pivx/settings/forms/settingswidget.ui \
-  qt/pivx/forms/welcomecontentwidget.ui \
-  qt/pivx/forms/splash.ui
+  qt/oasis/forms/loadingdialog.ui \
+  qt/oasis/forms/snackbar.ui \
+  qt/oasis/forms/navmenuwidget.ui \
+  qt/oasis/forms/lockunlock.ui \
+  qt/oasis/forms/expandablebutton.ui \
+  qt/oasis/forms/receivedialog.ui \
+  qt/oasis/forms/topbar.ui \
+  qt/oasis/forms/txrow.ui \
+  qt/oasis/forms/dashboardwidget.ui \
+  qt/oasis/forms/addresslabelrow.ui \
+  qt/oasis/forms/contactdropdownrow.ui \
+  qt/oasis/forms/mninfodialog.ui \
+  qt/oasis/forms/optionbutton.ui \
+  qt/oasis/forms/masternodewizarddialog.ui \
+  qt/oasis/forms/mnrow.ui \
+  qt/oasis/forms/masternodeswidget.ui \
+  qt/oasis/forms/myaddressrow.ui \
+  qt/oasis/forms/csrow.ui \
+  qt/oasis/forms/sendchangeaddressdialog.ui \
+  qt/oasis/forms/sendconfirmdialog.ui \
+  qt/oasis/forms/sendcustomfeedialog.ui \
+  qt/oasis/forms/sendchangeaddressdialog.ui \
+  qt/oasis/forms/sendmultirow.ui \
+  qt/oasis/forms/send.ui \
+  qt/oasis/forms/addnewaddressdialog.ui \
+  qt/oasis/forms/addnewcontactdialog.ui \
+  qt/oasis/forms/requestdialog.ui \
+  qt/oasis/forms/receivewidget.ui \
+  qt/oasis/forms/tooltipmenu.ui \
+  qt/oasis/forms/addresseswidget.ui \
+  qt/oasis/forms/defaultdialog.ui \
+  qt/oasis/forms/coldstakingwidget.ui \
+  qt/oasis/settings/forms/settingsbackupwallet.ui \
+  qt/oasis/settings/forms/settingsexportcsv.ui \
+  qt/oasis/settings/forms/settingsbittoolwidget.ui \
+  qt/oasis/settings/forms/settingsconsolewidget.ui \
+  qt/oasis/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/oasis/settings/forms/settingsfaqwidget.ui \
+  qt/oasis/settings/forms/settingsinformationwidget.ui \
+  qt/oasis/settings/forms/settingsmainoptionswidget.ui \
+  qt/oasis/settings/forms/settingsmultisenddialog.ui \
+  qt/oasis/settings/forms/settingsmultisendwidget.ui \
+  qt/oasis/settings/forms/settingssignmessagewidgets.ui \
+  qt/oasis/settings/forms/settingswalletoptionswidget.ui \
+  qt/oasis/settings/forms/settingswalletrepairwidget.ui \
+  qt/oasis/settings/forms/settingswidget.ui \
+  qt/oasis/forms/welcomecontentwidget.ui \
+  qt/oasis/forms/splash.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -85,7 +85,7 @@ QT_MOC_CPP = \
   qt/moc_startoptionsmain.cpp \
   qt/moc_bantablemodel.cpp \
   qt/moc_bitcoinaddressvalidator.cpp \
-  qt/pivx/moc_pivxgui.cpp \
+  qt/oasis/moc_oasisgui.cpp \
   qt/moc_bitcoinunits.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
@@ -113,75 +113,75 @@ QT_MOC_CPP = \
   qt/moc_transactiontablemodel.cpp \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletmodel.cpp \
-  qt/pivx/moc_loadingdialog.cpp \
-  qt/pivx/moc_pwidget.cpp \
-  qt/pivx/moc_snackbar.cpp \
-  qt/pivx/moc_navmenuwidget.cpp \
-  qt/pivx/moc_lockunlock.cpp \
-  qt/pivx/moc_expandablebutton.cpp \
-  qt/pivx/moc_furabstractlistitemdelegate.cpp \
-  qt/pivx/moc_receivedialog.cpp \
-  qt/pivx/moc_pfborderimage.cpp \
-  qt/pivx/moc_topbar.cpp \
-  qt/pivx/moc_txrow.cpp \
-  qt/pivx/moc_dashboardwidget.cpp \
-  qt/pivx/moc_addresslabelrow.cpp \
-  qt/pivx/moc_contactdropdownrow.cpp \
-  qt/pivx/moc_mninfodialog.cpp \
-  qt/pivx/moc_optionbutton.cpp \
-  qt/pivx/moc_coldstakingmodel.cpp \
-  qt/pivx/moc_mnmodel.cpp \
-  qt/pivx/moc_masternodewizarddialog.cpp \
-  qt/pivx/moc_mnrow.cpp \
-  qt/pivx/moc_masternodeswidget.cpp \
-  qt/pivx/moc_myaddressrow.cpp \
-  qt/pivx/moc_csrow.cpp \
-  qt/pivx/moc_contactsdropdown.cpp \
-  qt/pivx/moc_sendchangeaddressdialog.cpp \
-  qt/pivx/moc_sendconfirmdialog.cpp \
-  qt/pivx/moc_sendcustomfeedialog.cpp \
-  qt/pivx/moc_sendchangeaddressdialog.cpp \
-  qt/pivx/moc_sendmultirow.cpp \
-  qt/pivx/moc_send.cpp \
-  qt/pivx/moc_addnewaddressdialog.cpp \
-  qt/pivx/moc_addnewcontactdialog.cpp \
-  qt/pivx/moc_requestdialog.cpp \
-  qt/pivx/moc_receivewidget.cpp \
-  qt/pivx/moc_tooltipmenu.cpp \
-  qt/pivx/moc_addresseswidget.cpp \
-  qt/pivx/moc_defaultdialog.cpp \
-  qt/pivx/moc_coldstakingwidget.cpp \
-  qt/pivx/settings/moc_settingsbackupwallet.cpp \
-  qt/pivx/settings/moc_settingsexportcsv.cpp \
-  qt/pivx/settings/moc_settingsbittoolwidget.cpp \
-  qt/pivx/settings/moc_settingsconsolewidget.cpp \
-  qt/pivx/settings/moc_settingsdisplayoptionswidget.cpp \
-  qt/pivx/settings/moc_settingsfaqwidget.cpp \
-  qt/pivx/settings/moc_settingsinformationwidget.cpp \
-  qt/pivx/settings/moc_settingsmainoptionswidget.cpp \
-  qt/pivx/settings/moc_settingsmultisenddialog.cpp \
-  qt/pivx/settings/moc_settingsmultisendwidget.cpp \
-  qt/pivx/settings/moc_settingssignmessagewidgets.cpp \
-  qt/pivx/settings/moc_settingswalletoptionswidget.cpp \
-  qt/pivx/settings/moc_settingswalletrepairwidget.cpp \
-  qt/pivx/settings/moc_settingswidget.cpp \
-  qt/pivx/moc_welcomecontentwidget.cpp \
-  qt/pivx/moc_splash.cpp
+  qt/oasis/moc_loadingdialog.cpp \
+  qt/oasis/moc_pwidget.cpp \
+  qt/oasis/moc_snackbar.cpp \
+  qt/oasis/moc_navmenuwidget.cpp \
+  qt/oasis/moc_lockunlock.cpp \
+  qt/oasis/moc_expandablebutton.cpp \
+  qt/oasis/moc_furabstractlistitemdelegate.cpp \
+  qt/oasis/moc_receivedialog.cpp \
+  qt/oasis/moc_pfborderimage.cpp \
+  qt/oasis/moc_topbar.cpp \
+  qt/oasis/moc_txrow.cpp \
+  qt/oasis/moc_dashboardwidget.cpp \
+  qt/oasis/moc_addresslabelrow.cpp \
+  qt/oasis/moc_contactdropdownrow.cpp \
+  qt/oasis/moc_mninfodialog.cpp \
+  qt/oasis/moc_optionbutton.cpp \
+  qt/oasis/moc_coldstakingmodel.cpp \
+  qt/oasis/moc_mnmodel.cpp \
+  qt/oasis/moc_masternodewizarddialog.cpp \
+  qt/oasis/moc_mnrow.cpp \
+  qt/oasis/moc_masternodeswidget.cpp \
+  qt/oasis/moc_myaddressrow.cpp \
+  qt/oasis/moc_csrow.cpp \
+  qt/oasis/moc_contactsdropdown.cpp \
+  qt/oasis/moc_sendchangeaddressdialog.cpp \
+  qt/oasis/moc_sendconfirmdialog.cpp \
+  qt/oasis/moc_sendcustomfeedialog.cpp \
+  qt/oasis/moc_sendchangeaddressdialog.cpp \
+  qt/oasis/moc_sendmultirow.cpp \
+  qt/oasis/moc_send.cpp \
+  qt/oasis/moc_addnewaddressdialog.cpp \
+  qt/oasis/moc_addnewcontactdialog.cpp \
+  qt/oasis/moc_requestdialog.cpp \
+  qt/oasis/moc_receivewidget.cpp \
+  qt/oasis/moc_tooltipmenu.cpp \
+  qt/oasis/moc_addresseswidget.cpp \
+  qt/oasis/moc_defaultdialog.cpp \
+  qt/oasis/moc_coldstakingwidget.cpp \
+  qt/oasis/settings/moc_settingsbackupwallet.cpp \
+  qt/oasis/settings/moc_settingsexportcsv.cpp \
+  qt/oasis/settings/moc_settingsbittoolwidget.cpp \
+  qt/oasis/settings/moc_settingsconsolewidget.cpp \
+  qt/oasis/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/oasis/settings/moc_settingsfaqwidget.cpp \
+  qt/oasis/settings/moc_settingsinformationwidget.cpp \
+  qt/oasis/settings/moc_settingsmainoptionswidget.cpp \
+  qt/oasis/settings/moc_settingsmultisenddialog.cpp \
+  qt/oasis/settings/moc_settingsmultisendwidget.cpp \
+  qt/oasis/settings/moc_settingssignmessagewidgets.cpp \
+  qt/oasis/settings/moc_settingswalletoptionswidget.cpp \
+  qt/oasis/settings/moc_settingswalletrepairwidget.cpp \
+  qt/oasis/settings/moc_settingswidget.cpp \
+  qt/oasis/moc_welcomecontentwidget.cpp \
+  qt/oasis/moc_splash.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/zenzo.moc \
+  qt/oasis.moc \
   qt/intro.moc \
   qt/rpcconsole.moc \
-  qt/pivx/settings/moc_settingsconsolewidget.cpp
+  qt/oasis/settings/moc_settingsconsolewidget.cpp
 
-QT_QRC_CPP = qt/qrc_zenzo.cpp
-QT_QRC = qt/zenzo.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_zenzo_locale.cpp
-QT_QRC_LOCALE = qt/zenzo_locale.qrc
+QT_QRC_CPP = qt/qrc_oasis.cpp
+QT_QRC = qt/oasis.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_oasis_locale.cpp
+QT_QRC_LOCALE = qt/oasis_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -193,7 +193,7 @@ BITCOIN_QT_H = \
   qt/askpassphrasedialog.h \
   qt/bantablemodel.h \
   qt/bitcoinaddressvalidator.h \
-  qt/pivx/pivxgui.h \
+  qt/oasis/oasisgui.h \
   qt/bitcoinunits.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -233,68 +233,68 @@ BITCOIN_QT_H = \
   qt/utilitydialog.h \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
-  qt/pivx/prunnable.h \
-  qt/pivx/pfborderimage.h \
-  qt/pivx/loadingdialog.h \
+  qt/oasis/prunnable.h \
+  qt/oasis/pfborderimage.h \
+  qt/oasis/loadingdialog.h \
   qt/winshutdownmonitor.h \
-  qt/pivx/pwidget.h \
-  qt/pivx/guitransactionsutils.h \
-  qt/pivx/snackbar.h \
-  qt/pivx/navmenuwidget.h \
-  qt/pivx/lockunlock.h \
-  qt/pivx/receivedialog.h \
-  qt/pivx/furlistrow.h \
-  qt/pivx/furabstractlistitemdelegate.h \
-  qt/pivx/txviewholder.h \
-  qt/pivx/qtutils.h \
-  qt/pivx/expandablebutton.h \
-  qt/pivx/topbar.h \
-  qt/pivx/txrow.h \
-  qt/pivx/addressholder.h \
-  qt/pivx/addressfilterproxymodel.h \
-  qt/pivx/dashboardwidget.h \
-  qt/pivx/addresslabelrow.h \
-  qt/pivx/contactdropdownrow.h \
-  qt/pivx/mninfodialog.h \
-  qt/pivx/optionbutton.h \
-  qt/pivx/coldstakingmodel.h \
-  qt/pivx/mnmodel.h \
-  qt/pivx/masternodewizarddialog.h \
-  qt/pivx/mnrow.h \
-  qt/pivx/masternodeswidget.h \
-  qt/pivx/myaddressrow.h \
-  qt/pivx/csrow.h \
-  qt/pivx/contactsdropdown.h \
-  qt/pivx/sendchangeaddressdialog.h \
-  qt/pivx/sendconfirmdialog.h \
-  qt/pivx/sendcustomfeedialog.h \
-  qt/pivx/sendchangeaddressdialog.h \
-  qt/pivx/sendmultirow.h \
-  qt/pivx/send.h \
-  qt/pivx/addnewaddressdialog.h \
-  qt/pivx/addnewcontactdialog.h \
-  qt/pivx/requestdialog.h \
-  qt/pivx/receivewidget.h \
-  qt/pivx/tooltipmenu.h \
-  qt/pivx/addresseswidget.h \
-  qt/pivx/defaultdialog.h \
-  qt/pivx/coldstakingwidget.h \
-  qt/pivx/settings/settingsbackupwallet.h \
-  qt/pivx/settings/settingsexportcsv.h \
-  qt/pivx/settings/settingsbittoolwidget.h \
-  qt/pivx/settings/settingsconsolewidget.h \
-  qt/pivx/settings/settingsdisplayoptionswidget.h \
-  qt/pivx/settings/settingsfaqwidget.h \
-  qt/pivx/settings/settingsinformationwidget.h \
-  qt/pivx/settings/settingsmainoptionswidget.h \
-  qt/pivx/settings/settingsmultisenddialog.h \
-  qt/pivx/settings/settingsmultisendwidget.h \
-  qt/pivx/settings/settingssignmessagewidgets.h \
-  qt/pivx/settings/settingswalletoptionswidget.h \
-  qt/pivx/settings/settingswalletrepairwidget.h \
-  qt/pivx/settings/settingswidget.h \
-  qt/pivx/welcomecontentwidget.h \
-  qt/pivx/splash.h
+  qt/oasis/pwidget.h \
+  qt/oasis/guitransactionsutils.h \
+  qt/oasis/snackbar.h \
+  qt/oasis/navmenuwidget.h \
+  qt/oasis/lockunlock.h \
+  qt/oasis/receivedialog.h \
+  qt/oasis/furlistrow.h \
+  qt/oasis/furabstractlistitemdelegate.h \
+  qt/oasis/txviewholder.h \
+  qt/oasis/qtutils.h \
+  qt/oasis/expandablebutton.h \
+  qt/oasis/topbar.h \
+  qt/oasis/txrow.h \
+  qt/oasis/addressholder.h \
+  qt/oasis/addressfilterproxymodel.h \
+  qt/oasis/dashboardwidget.h \
+  qt/oasis/addresslabelrow.h \
+  qt/oasis/contactdropdownrow.h \
+  qt/oasis/mninfodialog.h \
+  qt/oasis/optionbutton.h \
+  qt/oasis/coldstakingmodel.h \
+  qt/oasis/mnmodel.h \
+  qt/oasis/masternodewizarddialog.h \
+  qt/oasis/mnrow.h \
+  qt/oasis/masternodeswidget.h \
+  qt/oasis/myaddressrow.h \
+  qt/oasis/csrow.h \
+  qt/oasis/contactsdropdown.h \
+  qt/oasis/sendchangeaddressdialog.h \
+  qt/oasis/sendconfirmdialog.h \
+  qt/oasis/sendcustomfeedialog.h \
+  qt/oasis/sendchangeaddressdialog.h \
+  qt/oasis/sendmultirow.h \
+  qt/oasis/send.h \
+  qt/oasis/addnewaddressdialog.h \
+  qt/oasis/addnewcontactdialog.h \
+  qt/oasis/requestdialog.h \
+  qt/oasis/receivewidget.h \
+  qt/oasis/tooltipmenu.h \
+  qt/oasis/addresseswidget.h \
+  qt/oasis/defaultdialog.h \
+  qt/oasis/coldstakingwidget.h \
+  qt/oasis/settings/settingsbackupwallet.h \
+  qt/oasis/settings/settingsexportcsv.h \
+  qt/oasis/settings/settingsbittoolwidget.h \
+  qt/oasis/settings/settingsconsolewidget.h \
+  qt/oasis/settings/settingsdisplayoptionswidget.h \
+  qt/oasis/settings/settingsfaqwidget.h \
+  qt/oasis/settings/settingsinformationwidget.h \
+  qt/oasis/settings/settingsmainoptionswidget.h \
+  qt/oasis/settings/settingsmultisenddialog.h \
+  qt/oasis/settings/settingsmultisendwidget.h \
+  qt/oasis/settings/settingssignmessagewidgets.h \
+  qt/oasis/settings/settingswalletoptionswidget.h \
+  qt/oasis/settings/settingswalletrepairwidget.h \
+  qt/oasis/settings/settingswidget.h \
+  qt/oasis/welcomecontentwidget.h \
+  qt/oasis/splash.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -309,217 +309,215 @@ RES_ICONS = \
   qt/res/icons/ic-transaction-mint.svg \
   qt/res/icons/ic-transaction-sent.svg \
   qt/res/icons/ic-transaction-staked.svg \
-  qt/pivx/res/img/bg-dashboard-banner.png \
-  qt/pivx/res/img/bg-multi-number-dark.svg \
-  qt/pivx/res/img/ic-check-locked.svg \
-  qt/pivx/res/img/ic-nav-address.svg \
-  qt/pivx/res/img/ic-update.svg \
-  qt/pivx/res/img/bg-multi-number.svg \
-  qt/pivx/res/img/ic-check-mint-off.svg \
-  qt/pivx/res/img/ic-nav-cold-staking.svg \
-  qt/pivx/res/img/ic-nav-cold-staking-active.svg \
-  qt/pivx/res/img/ic-nav-dashboard-active.svg \
-  qt/pivx/res/img/ic-wallet-status-locked.svg \
-  qt/pivx/res/img/bg-splash.svg \
-  qt/pivx/res/img/bg-splash.png \
-  qt/pivx/res/img/ic-check-mint.svg \
-  qt/pivx/res/img/ic-nav-dashboard-hover.svg \
-  qt/pivx/res/img/ic-wallet-status-staking.svg \
-  qt/pivx/res/img/ic-check-peers-off.svg \
-  qt/pivx/res/img/ic-nav-dashboard.svg \
-  qt/pivx/res/img/ic-wallet-status-unlocked.svg \
-  qt/pivx/res/img/ic-check-peers.svg \
-  qt/pivx/res/img/ic-nav-master-active.svg \
-  qt/pivx/res/img/ic-watch-password-white.svg \
-  qt/pivx/res/img/bg-welcome-container.jpg \
-  qt/pivx/res/img/bg-welcome-container.png \
-  qt/pivx/res/img/bg-welcome-container.svg \
-  qt/pivx/res/img/bg-welcome-container@2x.png \
-  qt/pivx/res/img/bg-welcome-container@3x.png \
-  qt/pivx/res/img/ic-check-staking-off.svg \
-  qt/pivx/res/img/ic-check-hd.svg \
-  qt/pivx/res/img/ic-check-hd-off.svg \
-  qt/pivx/res/img/ic-nav-master-hover.svg \
-  qt/pivx/res/img/ic-watch-password.svg \
-  qt/pivx/res/img/bg-welcome.jpg \
-  qt/pivx/res/img/bg-welcome.svg \
-  qt/pivx/res/img/bg-welcome@2x.jpg \
-  qt/pivx/res/img/bg-welcome@3x.jpg \
-  qt/pivx/res/img/bg-welcome.png \
-  qt/pivx/res/img/ic-check-staking.svg \
-  qt/pivx/res/img/ic-nav-master.svg \
-  qt/pivx/res/img/img-dashboard-banner.jpg \
-  qt/pivx/res/img/btn-radio-active.svg \
-  qt/pivx/res/img/ic-check-sync-off.svg \
-  qt/pivx/res/img/img-empty-contacts.svg \
-  qt/pivx/res/img/btn-radio-off.svg \
-  qt/pivx/res/img/ic-check-sync.svg \
-  qt/pivx/res/img/img-empty-dark-contacts.svg \
-  qt/pivx/res/img/ic-contact-arrow-down.svg \
-  qt/pivx/res/img/ic-contact-arrow-down-white.svg \
-  qt/pivx/res/img/ic-check-hardfork.svg \
-  qt/pivx/res/img/ic-check-faq.svg \
-  qt/pivx/res/img/img-empty-dark-error.svg \
-  qt/pivx/res/img/ic-add-label.svg \
-  qt/pivx/res/img/ic-pending.svg \
-  qt/pivx/res/img/ic-check-theme-dark.svg \
-  qt/pivx/res/img/ic-nav-receive-active.svg \
-  qt/pivx/res/img/img-empty-dark-masternode.svg \
-  qt/pivx/res/img/ic-add-liliac.svg \
-  qt/pivx/res/img/ic-check-theme-light.svg \
-  qt/pivx/res/img/ic-nav-receive-hover.svg \
-  qt/pivx/res/img/img-empty-dark-multisend.svg \
-  qt/pivx/res/img/ic-add-purple.svg \
-  qt/pivx/res/img/ic-check-white.svg \
-  qt/pivx/res/img/ic-nav-receive.svg \
-  qt/pivx/res/img/img-empty-dark-peers.svg \
-  qt/pivx/res/img/ic-add.svg \
-  qt/pivx/res/img/ic-check.svg \
-  qt/pivx/res/img/ic-nav-send-active.svg \
-  qt/pivx/res/img/img-empty-dark-staking-off.svg \
-  qt/pivx/res/img/img-empty-dark-staking-on.svg \
-  qt/pivx/res/img/ic-address-book-grey.svg \
-  qt/pivx/res/img/ic-chevron-left.svg \
-  qt/pivx/res/img/ic-nav-send-hover.svg \
-  qt/pivx/res/img/img-empty-dark-transactions.svg \
-  qt/pivx/res/img/ic-address-book-white.svg \
-  qt/pivx/res/img/ic-chevron-right.svg \
-  qt/pivx/res/img/ic-nav-send.svg \
-  qt/pivx/res/img/img-empty-error.svg \
-  qt/pivx/res/img/ic-address-book.svg \
-  qt/pivx/res/img/ic-clear-liliac.svg \
-  qt/pivx/res/img/ic-nav-settings-active.svg \
-  qt/pivx/res/img/img-empty-masternode.svg \
-  qt/pivx/res/img/ic-address-send-white.svg \
-  qt/pivx/res/img/ic-clear-purple.svg \
-  qt/pivx/res/img/ic-nav-settings-hover.svg \
-  qt/pivx/res/img/img-empty-multisend.svg \
-  qt/pivx/res/img/ic-address-send.svg \
-  qt/pivx/res/img/ic-close-white.svg \
-  qt/pivx/res/img/ic-nav-settings.svg \
-  qt/pivx/res/img/img-empty-peers.svg \
-  qt/pivx/res/img/ic-arrow-drop-down-white.svg \
-  qt/pivx/res/img/ic-close.svg \
-  qt/pivx/res/img/ic-radio-liliac-on.svg \
-  qt/pivx/res/img/img-empty-staking-off.svg \
-  qt/pivx/res/img/ic-arrow-drop-down.svg \
-  qt/pivx/res/img/ic-coin-piv.svg \
-  qt/pivx/res/img/ic-receive-off.svg \
-  qt/pivx/res/img/img-empty-staking-on.svg \
-  qt/pivx/res/img/ic-arrow-drop-up-white.svg \
-  qt/pivx/res/img/ic-receive-on.svg \
-  qt/pivx/res/img/img-empty-transactions.svg \
-  qt/pivx/res/img/ic-arrow-drop-up.svg \
-  qt/pivx/res/img/ic-received.svg \
-  qt/pivx/res/img/img-logo-pivx.png \
-  qt/pivx/res/img/ic-arrow-drop-white-down.svg \
-  qt/pivx/res/img/ic-combo-box.svg \
-  qt/pivx/res/img/ic-send.svg \
-  qt/pivx/res/img/img-logo-pivx@2x.png \
-  qt/pivx/res/img/ic-arrow-purple-down.svg \
-  qt/pivx/res/img/ic-connect.svg \
-  qt/pivx/res/img/ic-submenu-lock.svg \
-  qt/pivx/res/img/img-logo-pivx@3x.png \
-  qt/pivx/res/img/img-logo-pivx.svg \
-  qt/pivx/res/img/ic-arrow-right-white.svg \
-  qt/pivx/res/img/ic-arrow-left-white.svg \
-  qt/pivx/res/img/ic-arrow-left.svg \
-  qt/pivx/res/img/ic-copy-liliac.svg \
-  qt/pivx/res/img/ic-submenu-staking.svg \
-  qt/pivx/res/img/img-nav-logo-pivx.png \
-  qt/pivx/res/img/ic-arrow-right.svg \
-  qt/pivx/res/img/ic-copy.svg \
-  qt/pivx/res/img/ic-copy-big.svg \
-  qt/pivx/res/img/ic-copy-big-white.svg \
-  qt/pivx/res/img/ic-submenu-unlock.svg \
-  qt/pivx/res/img/img-nav-logo.png \
-  qt/pivx/res/img/ic-arrow-white-left.svg \
-  qt/pivx/res/img/ic-exit.svg \
-  qt/pivx/res/img/ic-switch-liliac-on.svg \
-  qt/pivx/res/img/img-nav-logo.svg \
-  qt/pivx/res/img/ic-arrow-white-right.svg \
-  qt/pivx/res/img/ic-expand.svg \
-  qt/pivx/res/img/ic-switch-off.svg \
-  qt/pivx/res/img/img-qr-test-big.png \
-  qt/pivx/res/img/ic-check-active.svg \
-  qt/pivx/res/img/ic-folder.svg \
-  qt/pivx/res/img/ic-switch-on.svg \
-  qt/pivx/res/img/img-qr-test.png \
-  qt/pivx/res/img/ic-check-box.svg \
-  qt/pivx/res/img/ic-check-box-dark-active.svg \
-  qt/pivx/res/img/ic-check-box-indeterminate.svg \
-  qt/pivx/res/img/ic-check-box-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-label-liliac.svg \
-  qt/pivx/res/img/ic-transaction-warning.svg \
-  qt/pivx/res/img/ic-transaction-mint.svg \
-  qt/pivx/res/img/ic-transaction-mint-inactive.svg \
-  qt/pivx/res/img/ic-check-cold-staking.svg \
-  qt/pivx/res/img/ic-check-cold-staking-off.svg \
-  qt/pivx/res/img/ic-check-cold-staking-enabled.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract-inactive.svg \
-  qt/pivx/res/img/img-qr.svg \
-  qt/pivx/res/img/ic-check-connect-off.svg \
-  qt/pivx/res/img/ic-check-tor-off.svg \
-  qt/pivx/res/img/ic-check-tor.svg \
-  qt/pivx/res/img/ic-label.svg \
-  qt/pivx/res/img/ic-transaction-received.svg \
-  qt/pivx/res/img/dark/ic-transaction-received.svg \
-  qt/pivx/res/img/dark/ic-transaction-warning.svg \
-  qt/pivx/res/img/dark/ic-transaction-mint.svg \
-  qt/pivx/res/img/dark/ic-transaction-mint-inactive.svg \
-  qt/pivx/res/img/ic-transaction-received-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-received-inactive.svg \
-  qt/pivx/res/img/img-welcome-step1.png \
-  qt/pivx/res/img/ic-check-connect.svg \
-  qt/pivx/res/img/ic-menu-hover.svg \
-  qt/pivx/res/img/ic-transaction-sent.svg \
-  qt/pivx/res/img/ic-transaction-sent-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-sent.svg \
-  qt/pivx/res/img/dark/ic-transaction-sent-inactive.svg \
-  qt/pivx/res/img/ic-transaction-burn.svg \
-  qt/pivx/res/img/ic-transaction-burn-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-burn.svg \
-  qt/pivx/res/img/dark/ic-transaction-burn-inactive.svg \
-  qt/pivx/res/img/img-welcome-step2.png \
-  qt/pivx/res/img/ic-check-dark.svg \
-  qt/pivx/res/img/ic-mint.svg \
-  qt/pivx/res/img/ic-transaction-staked.svg \
-  qt/pivx/res/img/ic-transaction-staked-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-staked.svg \
-  qt/pivx/res/img/dark/ic-transaction-staked-inactive.svg \
-  qt/pivx/res/img/img-welcome-step3.png \
-  qt/pivx/res/img/ic-check-liliac-on.svg \
-  qt/pivx/res/img/ic-nav-address-active.svg \
-  qt/pivx/res/img/ic-unlock-staking.svg \
-  qt/pivx/res/img/img-welcome-step4.png \
-  qt/pivx/res/img/ic-check-locked-off.svg \
-  qt/pivx/res/img/ic-nav-address-hover.svg \
-  qt/pivx/res/img/ic-update-liliac.svg \
-  qt/pivx/res/img/ic-arrow-drop-down-purple.svg \
-  qt/pivx/res/img/ic-arrow-drop-up-purple.svg \
-  qt/pivx/res/img/ic-check-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-check-box-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract-inactive.svg \
-  qt/pivx/res/img/ic-check-box-indeterminate.svg \
-  qt/pivx/res/img/ani-loading-dark.gif \
-  qt/pivx/res/img/ani-loading.gif
+  qt/oasis/res/img/bg-dashboard-banner.png \
+  qt/oasis/res/img/bg-multi-number-dark.svg \
+  qt/oasis/res/img/ic-check-locked.svg \
+  qt/oasis/res/img/ic-nav-address.svg \
+  qt/oasis/res/img/ic-update.svg \
+  qt/oasis/res/img/bg-multi-number.svg \
+  qt/oasis/res/img/ic-check-mint-off.svg \
+  qt/oasis/res/img/ic-nav-cold-staking.svg \
+  qt/oasis/res/img/ic-nav-cold-staking-active.svg \
+  qt/oasis/res/img/ic-nav-dashboard-active.svg \
+  qt/oasis/res/img/ic-wallet-status-locked.svg \
+  qt/oasis/res/img/bg-splash.svg \
+  qt/oasis/res/img/bg-splash.png \
+  qt/oasis/res/img/ic-check-mint.svg \
+  qt/oasis/res/img/ic-nav-dashboard-hover.svg \
+  qt/oasis/res/img/ic-wallet-status-staking.svg \
+  qt/oasis/res/img/ic-check-peers-off.svg \
+  qt/oasis/res/img/ic-nav-dashboard.svg \
+  qt/oasis/res/img/ic-wallet-status-unlocked.svg \
+  qt/oasis/res/img/ic-check-peers.svg \
+  qt/oasis/res/img/ic-nav-master-active.svg \
+  qt/oasis/res/img/ic-watch-password-white.svg \
+  qt/oasis/res/img/bg-welcome-container.jpg \
+  qt/oasis/res/img/bg-welcome-container.png \
+  qt/oasis/res/img/bg-welcome-container.svg \
+  qt/oasis/res/img/bg-welcome-container@2x.png \
+  qt/oasis/res/img/bg-welcome-container@3x.png \
+  qt/oasis/res/img/ic-check-staking-off.svg \
+  qt/oasis/res/img/ic-check-hd.svg \
+  qt/oasis/res/img/ic-check-hd-off.svg \
+  qt/oasis/res/img/ic-nav-master-hover.svg \
+  qt/oasis/res/img/ic-watch-password.svg \
+  qt/oasis/res/img/bg-welcome.jpg \
+  qt/oasis/res/img/bg-welcome.svg \
+  qt/oasis/res/img/bg-welcome@2x.jpg \
+  qt/oasis/res/img/bg-welcome@3x.jpg \
+  qt/oasis/res/img/bg-welcome.png \
+  qt/oasis/res/img/ic-check-staking.svg \
+  qt/oasis/res/img/ic-nav-master.svg \
+  qt/oasis/res/img/bg-dashboard-banner.png \
+  qt/oasis/res/img/bg-copy.png \
+  qt/oasis/res/img/btn-radio-active.svg \
+  qt/oasis/res/img/ic-check-sync-off.svg \
+  qt/oasis/res/img/img-empty-contacts.svg \
+  qt/oasis/res/img/btn-radio-off.svg \
+  qt/oasis/res/img/ic-check-sync.svg \
+  qt/oasis/res/img/img-empty-dark-contacts.svg \
+  qt/oasis/res/img/ic-contact-arrow-down.svg \
+  qt/oasis/res/img/ic-contact-arrow-down-white.svg \
+  qt/oasis/res/img/ic-check-hardfork.svg \
+  qt/oasis/res/img/ic-check-faq.svg \
+  qt/oasis/res/img/img-empty-dark-error.svg \
+  qt/oasis/res/img/ic-add-label.svg \
+  qt/oasis/res/img/ic-pending.svg \
+  qt/oasis/res/img/ic-check-theme-dark.svg \
+  qt/oasis/res/img/ic-nav-receive-active.svg \
+  qt/oasis/res/img/img-empty-dark-masternode.svg \
+  qt/oasis/res/img/ic-add-liliac.svg \
+  qt/oasis/res/img/ic-check-theme-light.svg \
+  qt/oasis/res/img/ic-nav-receive-hover.svg \
+  qt/oasis/res/img/img-empty-dark-multisend.svg \
+  qt/oasis/res/img/ic-add-purple.svg \
+  qt/oasis/res/img/ic-check-white.svg \
+  qt/oasis/res/img/ic-nav-receive.svg \
+  qt/oasis/res/img/img-empty-dark-peers.svg \
+  qt/oasis/res/img/ic-add.svg \
+  qt/oasis/res/img/ic-check.svg \
+  qt/oasis/res/img/ic-nav-send-active.svg \
+  qt/oasis/res/img/img-empty-dark-staking-off.svg \
+  qt/oasis/res/img/img-empty-dark-staking-on.svg \
+  qt/oasis/res/img/ic-address-book-grey.svg \
+  qt/oasis/res/img/ic-chevron-left.svg \
+  qt/oasis/res/img/ic-nav-send-hover.svg \
+  qt/oasis/res/img/img-empty-dark-transactions.svg \
+  qt/oasis/res/img/ic-address-book-white.svg \
+  qt/oasis/res/img/ic-chevron-right.svg \
+  qt/oasis/res/img/ic-nav-send.svg \
+  qt/oasis/res/img/img-empty-error.svg \
+  qt/oasis/res/img/ic-address-book.svg \
+  qt/oasis/res/img/ic-clear-liliac.svg \
+  qt/oasis/res/img/ic-nav-settings-active.svg \
+  qt/oasis/res/img/img-empty-masternode.svg \
+  qt/oasis/res/img/ic-address-send-white.svg \
+  qt/oasis/res/img/ic-clear-purple.svg \
+  qt/oasis/res/img/ic-nav-settings-hover.svg \
+  qt/oasis/res/img/img-empty-multisend.svg \
+  qt/oasis/res/img/ic-address-send.svg \
+  qt/oasis/res/img/ic-close-white.svg \
+  qt/oasis/res/img/ic-nav-settings.svg \
+  qt/oasis/res/img/img-empty-peers.svg \
+  qt/oasis/res/img/ic-arrow-drop-down-white.svg \
+  qt/oasis/res/img/ic-close.svg \
+  qt/oasis/res/img/ic-radio-liliac-on.svg \
+  qt/oasis/res/img/img-empty-staking-off.svg \
+  qt/oasis/res/img/ic-arrow-drop-down.svg \
+  qt/oasis/res/img/ic-receive-off.svg \
+  qt/oasis/res/img/ic-arrow-drop-up-white.svg \
+  qt/oasis/res/img/ic-receive-on.svg \
+  qt/oasis/res/img/ic-arrow-drop-up.svg \
+  qt/oasis/res/img/ic-received.svg \
+  qt/oasis/res/img/img-logo-oasis.png \
+  qt/oasis/res/img/ic-arrow-drop-white-down.svg \
+  qt/oasis/res/img/ic-combo-box.svg \
+  qt/oasis/res/img/ic-send.svg \
+  qt/oasis/res/img/img-logo-oasis@2x.png \
+  qt/oasis/res/img/ic-arrow-purple-down.svg \
+  qt/oasis/res/img/ic-connect.svg \
+  qt/oasis/res/img/ic-submenu-lock.svg \
+  qt/oasis/res/img/img-logo-oasis@3x.png \
+  qt/oasis/res/img/img-logo-oasis.svg \
+  qt/oasis/res/img/ic-arrow-right-white.svg \
+  qt/oasis/res/img/ic-arrow-left-white.svg \
+  qt/oasis/res/img/ic-arrow-left.svg \
+  qt/oasis/res/img/ic-copy-liliac.svg \
+  qt/oasis/res/img/ic-submenu-staking.svg \
+  qt/oasis/res/img/img-nav-logo-oasis.png \
+  qt/oasis/res/img/ic-arrow-right.svg \
+  qt/oasis/res/img/ic-copy.svg \
+  qt/oasis/res/img/ic-copy-big.svg \
+  qt/oasis/res/img/ic-copy-big-white.svg \
+  qt/oasis/res/img/ic-submenu-unlock.svg \
+  qt/oasis/res/img/img-nav-logo.png \
+  qt/oasis/res/img/ic-arrow-white-left.svg \
+  qt/oasis/res/img/ic-exit.svg \
+  qt/oasis/res/img/ic-switch-liliac-on.svg \
+  qt/oasis/res/img/img-nav-logo.svg \
+  qt/oasis/res/img/ic-arrow-white-right.svg \
+  qt/oasis/res/img/ic-expand.svg \
+  qt/oasis/res/img/ic-switch-off.svg \
+  qt/oasis/res/img/img-qr-test-big.png \
+  qt/oasis/res/img/ic-check-active.svg \
+  qt/oasis/res/img/ic-folder.svg \
+  qt/oasis/res/img/ic-switch-on.svg \
+  qt/oasis/res/img/img-qr-test.png \
+  qt/oasis/res/img/ic-check-box.svg \
+  qt/oasis/res/img/ic-check-box-dark-active.svg \
+  qt/oasis/res/img/ic-check-box-indeterminate.svg \
+  qt/oasis/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/oasis/res/img/ic-label-liliac.svg \
+  qt/oasis/res/img/ic-transaction-warning.svg \
+  qt/oasis/res/img/ic-transaction-mint.svg \
+  qt/oasis/res/img/ic-transaction-mint-inactive.svg \
+  qt/oasis/res/img/ic-check-cold-staking.svg \
+  qt/oasis/res/img/ic-check-cold-staking-off.svg \
+  qt/oasis/res/img/ic-check-cold-staking-enabled.svg \
+  qt/oasis/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/oasis/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/oasis/res/img/img-qr.svg \
+  qt/oasis/res/img/ic-check-connect-off.svg \
+  qt/oasis/res/img/ic-check-tor-off.svg \
+  qt/oasis/res/img/ic-check-tor.svg \
+  qt/oasis/res/img/ic-label.svg \
+  qt/oasis/res/img/ic-transaction-received.svg \
+  qt/oasis/res/img/dark/ic-transaction-received.svg \
+  qt/oasis/res/img/dark/ic-transaction-warning.svg \
+  qt/oasis/res/img/dark/ic-transaction-mint.svg \
+  qt/oasis/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/oasis/res/img/ic-transaction-received-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/oasis/res/img/img-welcome-step1.png \
+  qt/oasis/res/img/ic-check-connect.svg \
+  qt/oasis/res/img/ic-menu-hover.svg \
+  qt/oasis/res/img/ic-transaction-sent.svg \
+  qt/oasis/res/img/ic-transaction-sent-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-sent.svg \
+  qt/oasis/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/oasis/res/img/ic-transaction-burn.svg \
+  qt/oasis/res/img/ic-transaction-burn-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-burn.svg \
+  qt/oasis/res/img/dark/ic-transaction-burn-inactive.svg \
+  qt/oasis/res/img/img-welcome-step2.png \
+  qt/oasis/res/img/ic-check-dark.svg \
+  qt/oasis/res/img/ic-mint.svg \
+  qt/oasis/res/img/ic-transaction-staked.svg \
+  qt/oasis/res/img/ic-transaction-staked-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-staked.svg \
+  qt/oasis/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/oasis/res/img/img-welcome-step3.png \
+  qt/oasis/res/img/ic-check-liliac-on.svg \
+  qt/oasis/res/img/ic-nav-address-active.svg \
+  qt/oasis/res/img/ic-unlock-staking.svg \
+  qt/oasis/res/img/img-welcome-step4.png \
+  qt/oasis/res/img/ic-check-locked-off.svg \
+  qt/oasis/res/img/ic-nav-address-hover.svg \
+  qt/oasis/res/img/ic-update-liliac.svg \
+  qt/oasis/res/img/ic-arrow-drop-down-purple.svg \
+  qt/oasis/res/img/ic-arrow-drop-up-purple.svg \
+  qt/oasis/res/img/ic-check-liliac-indeterminate.svg \
+  qt/oasis/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/oasis/res/img/ic-transaction-stake-delegated.svg \
+  qt/oasis/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/oasis/res/img/ic-transaction-stake-hot.svg \
+  qt/oasis/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/oasis/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/oasis/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/oasis/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/oasis/res/img/ic-transaction-cs-contract.svg \
+  qt/oasis/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/oasis/res/img/ic-check-box-indeterminate.svg \
+  qt/oasis/res/img/ani-loading-dark.gif \
+  qt/oasis/res/img/ani-loading.gif
 
 
 
 BITCOIN_QT_BASE_CPP = \
   qt/bantablemodel.cpp \
   qt/bitcoinaddressvalidator.cpp \
-  qt/pivx/pivxgui.cpp \
+  qt/oasis/oasisgui.cpp \
   qt/bitcoinunits.cpp \
   qt/clientmodel.cpp \
   qt/csvmodelwriter.cpp \
@@ -563,64 +561,64 @@ BITCOIN_QT_WALLET_CPP = \
   qt/transactiontablemodel.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/pivx/loadingdialog.cpp \
-  qt/pivx/pwidget.cpp \
-  qt/pivx/guitransactionsutils.cpp \
-  qt/pivx/snackbar.cpp \
-  qt/pivx/navmenuwidget.cpp \
-  qt/pivx/lockunlock.cpp \
-  qt/pivx/receivedialog.cpp \
-  qt/pivx/furabstractlistitemdelegate.cpp \
-  qt/pivx/txviewholder.cpp \
-  qt/pivx/qtutils.cpp \
-  qt/pivx/expandablebutton.cpp \
-  qt/pivx/topbar.cpp \
-  qt/pivx/txrow.cpp \
-  qt/pivx/addressholder.cpp \
-  qt/pivx/addressfilterproxymodel.cpp \
-  qt/pivx/dashboardwidget.cpp \
-  qt/pivx/addresslabelrow.cpp \
-  qt/pivx/contactdropdownrow.cpp \
-  qt/pivx/contactsdropdown.cpp \
-  qt/pivx/optionbutton.cpp \
-  qt/pivx/mninfodialog.cpp \
-  qt/pivx/coldstakingmodel.cpp \
-  qt/pivx/mnmodel.cpp \
-  qt/pivx/masternodewizarddialog.cpp \
-  qt/pivx/mnrow.cpp \
-  qt/pivx/masternodeswidget.cpp \
-  qt/pivx/myaddressrow.cpp \
-  qt/pivx/csrow.cpp \
-  qt/pivx/sendchangeaddressdialog.cpp \
-  qt/pivx/sendconfirmdialog.cpp \
-  qt/pivx/sendcustomfeedialog.cpp \
-  qt/pivx/sendchangeaddressdialog.cpp \
-  qt/pivx/sendmultirow.cpp \
-  qt/pivx/send.cpp \
-  qt/pivx/addnewaddressdialog.cpp \
-  qt/pivx/addnewcontactdialog.cpp \
-  qt/pivx/requestdialog.cpp \
-  qt/pivx/receivewidget.cpp \
-  qt/pivx/tooltipmenu.cpp \
-  qt/pivx/addresseswidget.cpp \
-  qt/pivx/defaultdialog.cpp \
-  qt/pivx/coldstakingwidget.cpp \
-  qt/pivx/settings/settingsbackupwallet.cpp \
-  qt/pivx/settings/settingsexportcsv.cpp \
-  qt/pivx/settings/settingsbittoolwidget.cpp \
-  qt/pivx/settings/settingsconsolewidget.cpp \
-  qt/pivx/settings/settingsdisplayoptionswidget.cpp \
-  qt/pivx/settings/settingsfaqwidget.cpp \
-  qt/pivx/settings/settingsinformationwidget.cpp \
-  qt/pivx/settings/settingsmainoptionswidget.cpp \
-  qt/pivx/settings/settingsmultisenddialog.cpp \
-  qt/pivx/settings/settingsmultisendwidget.cpp \
-  qt/pivx/settings/settingssignmessagewidgets.cpp \
-  qt/pivx/settings/settingswalletoptionswidget.cpp \
-  qt/pivx/settings/settingswalletrepairwidget.cpp \
-  qt/pivx/settings/settingswidget.cpp \
-  qt/pivx/welcomecontentwidget.cpp \
-  qt/pivx/splash.cpp
+  qt/oasis/loadingdialog.cpp \
+  qt/oasis/pwidget.cpp \
+  qt/oasis/guitransactionsutils.cpp \
+  qt/oasis/snackbar.cpp \
+  qt/oasis/navmenuwidget.cpp \
+  qt/oasis/lockunlock.cpp \
+  qt/oasis/receivedialog.cpp \
+  qt/oasis/furabstractlistitemdelegate.cpp \
+  qt/oasis/txviewholder.cpp \
+  qt/oasis/qtutils.cpp \
+  qt/oasis/expandablebutton.cpp \
+  qt/oasis/topbar.cpp \
+  qt/oasis/txrow.cpp \
+  qt/oasis/addressholder.cpp \
+  qt/oasis/addressfilterproxymodel.cpp \
+  qt/oasis/dashboardwidget.cpp \
+  qt/oasis/addresslabelrow.cpp \
+  qt/oasis/contactdropdownrow.cpp \
+  qt/oasis/contactsdropdown.cpp \
+  qt/oasis/optionbutton.cpp \
+  qt/oasis/mninfodialog.cpp \
+  qt/oasis/coldstakingmodel.cpp \
+  qt/oasis/mnmodel.cpp \
+  qt/oasis/masternodewizarddialog.cpp \
+  qt/oasis/mnrow.cpp \
+  qt/oasis/masternodeswidget.cpp \
+  qt/oasis/myaddressrow.cpp \
+  qt/oasis/csrow.cpp \
+  qt/oasis/sendchangeaddressdialog.cpp \
+  qt/oasis/sendconfirmdialog.cpp \
+  qt/oasis/sendcustomfeedialog.cpp \
+  qt/oasis/sendchangeaddressdialog.cpp \
+  qt/oasis/sendmultirow.cpp \
+  qt/oasis/send.cpp \
+  qt/oasis/addnewaddressdialog.cpp \
+  qt/oasis/addnewcontactdialog.cpp \
+  qt/oasis/requestdialog.cpp \
+  qt/oasis/receivewidget.cpp \
+  qt/oasis/tooltipmenu.cpp \
+  qt/oasis/addresseswidget.cpp \
+  qt/oasis/defaultdialog.cpp \
+  qt/oasis/coldstakingwidget.cpp \
+  qt/oasis/settings/settingsbackupwallet.cpp \
+  qt/oasis/settings/settingsexportcsv.cpp \
+  qt/oasis/settings/settingsbittoolwidget.cpp \
+  qt/oasis/settings/settingsconsolewidget.cpp \
+  qt/oasis/settings/settingsdisplayoptionswidget.cpp \
+  qt/oasis/settings/settingsfaqwidget.cpp \
+  qt/oasis/settings/settingsinformationwidget.cpp \
+  qt/oasis/settings/settingsmainoptionswidget.cpp \
+  qt/oasis/settings/settingsmultisenddialog.cpp \
+  qt/oasis/settings/settingsmultisendwidget.cpp \
+  qt/oasis/settings/settingssignmessagewidgets.cpp \
+  qt/oasis/settings/settingswalletoptionswidget.cpp \
+  qt/oasis/settings/settingswalletrepairwidget.cpp \
+  qt/oasis/settings/settingswidget.cpp \
+  qt/oasis/welcomecontentwidget.cpp \
+  qt/oasis/splash.cpp
 
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
@@ -639,10 +637,10 @@ RES_IMAGES = \
 
 RES_CSS = \
   qt/res/css/default.css \
-  qt/pivx/res/css/style_dark.css \
-  qt/pivx/res/css/style_light.css
+  qt/oasis/res/css/style_dark.css \
+  qt/oasis/res/css/style_light.css
 
-BITCOIN_RC = qt/res/pivx-qt-res.rc
+BITCOIN_RC = qt/res/oasis-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
@@ -664,71 +662,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_zenzo_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_oasis_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# zenzo-qt binary #
-qt_zenzo_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# oasis-qt binary #
+qt_oasis_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
-qt_zenzo_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_oasis_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_zenzo_qt_SOURCES = qt/zenzo.cpp
+qt_oasis_qt_SOURCES = qt/oasis.cpp
 if TARGET_DARWIN
-  qt_zenzo_qt_SOURCES += $(BITCOIN_MM)
+  qt_oasis_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_zenzo_qt_SOURCES += $(BITCOIN_RC)
+  qt_oasis_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_zenzo_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_oasis_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_zenzo_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+qt_oasis_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_zenzo_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_oasis_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_zenzo_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_oasis_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_zenzo_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_zenzo_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+qt_oasis_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_oasis_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/pivxstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+$(srcdir)/qt/oasisstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/pivxstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/zenzo.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/oasisstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/oasis.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/pivx_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/oasis_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name zenzo_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name oasis_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name zenzo $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name oasis $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_zenzo_locale.qrc
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_oasis_locale.qrc
 
 CLEANFILES += $(CLEAN_QT)
 
-zenzo_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_zenzo_qt_OBJECTS) qt/zenzo-qt$(EXEEXT) $(LIBBITCOINQT)
+oasis_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_oasis_qt_OBJECTS) qt/oasis-qt$(EXEEXT) $(LIBBITCOINQT)
 
-zenzo_qt : qt/zenzo-qt$(EXEEXT)
+oasis_qt : qt/oasis-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)
