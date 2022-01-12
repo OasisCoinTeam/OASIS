@@ -9,7 +9,7 @@
 #include "txdb.h"
 #include "wallet/wallet.h"
 
-bool CPivStake::InitFromTxIn(const CTxIn& txin)
+bool COasisStake::InitFromTxIn(const CTxIn& txin)
 {
     // Find the previous transaction in database
     uint256 hashBlock;
@@ -31,14 +31,14 @@ bool CPivStake::InitFromTxIn(const CTxIn& txin)
     return true;
 }
 
-bool CPivStake::SetPrevout(CTransaction txPrev, unsigned int n)
+bool COasisStake::SetPrevout(CTransaction txPrev, unsigned int n)
 {
     this->txFrom = txPrev;
     this->nPosition = n;
     return true;
 }
 
-bool CPivStake::GetTxFrom(CTransaction& tx) const
+bool COasisStake::GetTxFrom(CTransaction& tx) const
 {
     if (txFrom.IsNull())
         return false;
@@ -46,18 +46,18 @@ bool CPivStake::GetTxFrom(CTransaction& tx) const
     return true;
 }
 
-bool CPivStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool COasisStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     txIn = CTxIn(txFrom.GetHash(), nPosition);
     return true;
 }
 
-CAmount CPivStake::GetValue() const
+CAmount COasisStake::GetValue() const
 {
     return txFrom.vout[nPosition].nValue;
 }
 
-bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
+bool COasisStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal)
 {
     std::vector<valtype> vSolutions;
     txnouttype whichType;
@@ -107,16 +107,16 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
     return true;
 }
 
-CDataStream CPivStake::GetUniqueness() const
+CDataStream COasisStake::GetUniqueness() const
 {
-    //The unique identifier for a PIV stake is the outpoint
+    //The unique identifier for a OASIS stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
     ss << nPosition << txFrom.GetHash();
     return ss;
 }
 
 //The block that the UTXO was added to the chain
-CBlockIndex* CPivStake::GetIndexFrom()
+CBlockIndex* COasisStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;
@@ -137,7 +137,7 @@ CBlockIndex* CPivStake::GetIndexFrom()
 }
 
 // Verify stake contextual checks
-bool CPivStake::ContextCheck(int nHeight, uint32_t nTime)
+bool COasisStake::ContextCheck(int nHeight, uint32_t nTime)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
     // Get Stake input block time/height
@@ -147,12 +147,13 @@ bool CPivStake::ContextCheck(int nHeight, uint32_t nTime)
     const int nHeightBlockFrom = pindexFrom->nHeight;
     const uint32_t nTimeBlockFrom = pindexFrom->nTime;
 
-    // Check that the stake has the required depth/age
+
+    //  Check that the stake has the required depth/age
     if (nHeight >= consensus.height_RHF - 1 &&
-            !consensus.HasStakeMinAgeOrDepth(nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom))
+        !consensus.HasStakeMinAgeOrDepth(nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom))
         return error("%s : min age violation - height=%d - time=%d, nHeightBlockFrom=%d, nTimeBlockFrom=%d",
                          __func__, nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom);
-    // All good
+    // // All good
     return true;
 }
 

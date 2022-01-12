@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import OasisTestFramework
 from test_framework.util import *
 
 
@@ -14,7 +14,7 @@ def get_unspent(listunspent, amount):
     raise AssertionError('Could not find unspent with amount={}'.format(amount))
 
 
-class RawTransactionsTest(PivxTestFramework):
+class RawTransactionsTest(OasisTestFramework):
 
     def __init__(self):
         super().__init__()
@@ -201,9 +201,9 @@ class RawTransactionsTest(PivxTestFramework):
 
         try:
             self.nodes[2].fundrawtransaction(rawtx, {'changeAddress': 'foobar'})
-            raise AssertionError("Accepted invalid pivx address")
+            raise AssertionError("Accepted invalid oasis address")
         except JSONRPCException as e:
-            assert("changeAddress must be a valid pivx address" in e.error['message'])
+            assert("changeAddress must be a valid oasis address" in e.error['message'])
 
 
         ############################################################

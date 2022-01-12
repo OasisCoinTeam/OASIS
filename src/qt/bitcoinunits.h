@@ -47,7 +47,7 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** ZENZO unit definitions. Encapsulates parsing and formatting
+/** OASIS unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
 class BitcoinUnits : public QAbstractListModel
@@ -57,13 +57,13 @@ class BitcoinUnits : public QAbstractListModel
 public:
     explicit BitcoinUnits(QObject* parent);
 
-    /** ZENZO units.
+    /** OASIS units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit {
-        PIV,
-        mPIV,
-        uPIV
+        XOS,
+        mXOS,
+        uXOS
     };
 
     enum SeparatorStyle {
@@ -86,7 +86,7 @@ public:
     static QString name(int unit);
     //! Longer description
     static QString description(int unit);
-    //! Number of zens (1e-8) per unit
+    //! Number of xos (1e-8) per unit
     static qint64 factor(int unit);
     //! Number of decimals left
     static int decimals(int unit);
@@ -126,7 +126,7 @@ public:
         return text;
     }
 
-    //! Return maximum number of base units (zens)
+    //! Return maximum number of base units (xos)
     static CAmount maxMoney();
 
 private:

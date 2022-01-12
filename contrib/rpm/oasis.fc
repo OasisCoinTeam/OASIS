@@ -1,0 +1,8 @@
+/usr/bin/oasis-cli		--	gen_context(system_u:object_r:oasis_exec_t,s0)
+/usr/sbin/oasisd		--	gen_context(system_u:object_r:oasis_exec_t,s0)
+/usr/lib(64)?/oasis/oasisd		--	gen_context(system_u:object_r:oasis_exec_t,s0)
+
+/etc/oasis(/.*)?		gen_context(system_u:object_r:oasis_conf_t,s0)
+/var/lib/oasis(/.*)?		gen_context(system_u:object_r:oasis_var_lib_t,s0)
+
+(/var)?/run/oasisd(/.*)?   gen_context(system_u:object_r:oasis_var_run_t,s0)

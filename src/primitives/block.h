@@ -23,7 +23,7 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION = 5;     //!> Version 5 marks ZENZO reverse-hardfork blocks (Adds: PoS v2, Time Proto, CLTV, etc - Removes: Accumulator)
+    static const int32_t CURRENT_VERSION = 5;     //!> Version 7 (Adds: PoS v2, Time Proto, CLTV, etc - Removes: Accumulator)
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;

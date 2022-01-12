@@ -10,16 +10,16 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both zenzod and zenzo-qt, to make it harder for attackers to
+ * for both oasisd and oasis-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("ZENZO Core");
+const std::string CLIENT_NAME("OASIS Core");
 
 /**
  * The Codename of the current release, often appended to CLIENT_NAME.
- * E.g: Kiyori (The first code-named ZENZO Core release, for v2.0.0)
+ * E.g: Delta (The first code-named OASIS Core release, for v3.0.0)
  */
-const std::string CLIENT_CODENAME = "Kiyori";
+const std::string CLIENT_CODENAME = "Leap";
 
 /**
  * Client version number
@@ -48,10 +48,11 @@ const std::string CLIENT_CODENAME = "Kiyori";
 #include "obj/build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
+#define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "$Format:%H$"
-#define GIT_COMMIT_DATE "$Format:%cD$"
+#define GIT_COMMIT_ID "684a5d71033fd72e1fcd15f124d8eea8170e8b80"
+#define GIT_COMMIT_DATE "Mon, 26 Oct 2020 23:17:48 +0000"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \

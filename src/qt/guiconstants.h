@@ -13,7 +13,7 @@ static const int MODEL_UPDATE_DELAY = 1000;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* ZENZO GUI -- Size of icons in status bar */
+/* OASIS GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* QRCodeDialog -- size of exported QR Code image */
 #define EXPORT_IMAGE_SIZE 256
 
-#define QAPP_ORG_NAME "ZENZO"
-#define QAPP_ORG_DOMAIN "zenzo.io"
-#define QAPP_APP_NAME_DEFAULT "ZENZO-Qt"
-#define QAPP_APP_NAME_TESTNET "ZENZO-Qt-testnet"
+#define QAPP_ORG_NAME "OASIS"
+#define QAPP_ORG_DOMAIN "oasis.orf"
+#define QAPP_APP_NAME_DEFAULT "OASIS-Qt"
+#define QAPP_APP_NAME_TESTNET "OASIS-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

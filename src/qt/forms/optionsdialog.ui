@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start ZENZO after logging in to the system.</string>
+          <string>Automatically start OASIS after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start ZENZO on system login</string>
+          <string>&amp;Start OASIS on system login</string>
          </property>
         </widget>
        </item>
@@ -194,7 +194,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the ZENZO client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the OASIS client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -214,7 +214,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the ZENZO network through a SOCKS5 proxy.</string>
+          <string>Connect to the OASIS network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -380,7 +380,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting ZENZO.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting OASIS.</string>
            </property>
           </widget>
          </item>
@@ -402,7 +402,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</string>
+https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -430,8 +430,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
+        <widget class="QWidget" name="verticalZxosDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZxosDisplayLayout">
           <property name="margin">
            <number>0</number>
           </property>

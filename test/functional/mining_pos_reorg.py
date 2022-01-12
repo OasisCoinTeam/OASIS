@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The PIVX developers
+# Copyright (c) 2019 The OASIS developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework.authproxy import JSONRPCException
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import OasisTestFramework
 from test_framework.util import (
     sync_blocks,
     assert_equal,
@@ -16,7 +16,7 @@ from test_framework.util import (
     DecimalAmt,
 )
 
-class ReorgStakeTest(PivxTestFramework):
+class ReorgStakeTest(OasisTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 3
@@ -142,9 +142,9 @@ class ReorgStakeTest(PivxTestFramework):
         self.log.info("Balance for node 2 checks out.")
 
         # Double spending txes not possible
-        assert_raises_rpc_error(-26, "bad-txns-invalid-zpiv",
+        assert_raises_rpc_error(-26, "bad-txns-invalid-zxos",
                                 self.nodes[0].sendrawtransaction, tx_B0)
-        assert_raises_rpc_error(-26, "bad-txns-invalid-zpiv",
+        assert_raises_rpc_error(-26, "bad-txns-invalid-zxos",
                                 self.nodes[0].sendrawtransaction, tx_B1)
 
         # verify that the stakeinput can't be spent
