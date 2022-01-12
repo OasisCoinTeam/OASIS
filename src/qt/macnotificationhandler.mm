@@ -14,7 +14,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.oasis.OASIS-Qt";
+        return @"io.zenzo.ZENZO-Qt";
     } else {
         return [self __bundleIdentifier];
     }

@@ -39,7 +39,7 @@ enum NumConnections {
     CONNECTIONS_ALL = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for OASIS network client. */
+/** Model for ZENZO network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT

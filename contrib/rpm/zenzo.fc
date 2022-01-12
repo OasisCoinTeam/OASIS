@@ -1,0 +1,8 @@
+/usr/bin/zenzo-cli		--	gen_context(system_u:object_r:zenzo_exec_t,s0)
+/usr/sbin/zenzod		--	gen_context(system_u:object_r:zenzo_exec_t,s0)
+/usr/lib(64)?/zenzo/zenzod		--	gen_context(system_u:object_r:zenzo_exec_t,s0)
+
+/etc/zenzo(/.*)?		gen_context(system_u:object_r:zenzo_conf_t,s0)
+/var/lib/zenzo(/.*)?		gen_context(system_u:object_r:zenzo_var_lib_t,s0)
+
+(/var)?/run/zenzod(/.*)?   gen_context(system_u:object_r:zenzo_var_run_t,s0)

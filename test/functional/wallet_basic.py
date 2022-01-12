@@ -3,10 +3,10 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the wallet."""
-from test_framework.test_framework import OasisTestFramework
+from test_framework.test_framework import PivxTestFramework
 from test_framework.util import *
 
-class WalletTest(OasisTestFramework):
+class WalletTest(PivxTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True

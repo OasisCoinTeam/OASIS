@@ -10,7 +10,7 @@
 #include "guiutil.h"
 
 #include "util.h"
-#include "qt/oasis/qtutils.h"
+#include "qt/pivx/qtutils.h"
 
 #include <boost/filesystem.hpp>
 
@@ -199,7 +199,7 @@ bool Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error& e) {
-                QMessageBox::critical(0, tr("OASIS Core"),
+                QMessageBox::critical(0, tr("ZENZO Core"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 // fall through, back to choosing screen
             }
@@ -209,8 +209,8 @@ bool Intro::pickDataDirectory()
     }
 
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the oasis.conf file in the default data directory
-     * (to be consistent with oasisd behavior)
+     * override -datadir in the zenzo.conf file in the default data directory
+     * (to be consistent with zenzod behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())

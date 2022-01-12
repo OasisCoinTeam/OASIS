@@ -455,13 +455,13 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::SendToSelf:
         return tr("Payment to yourself");
     case TransactionRecord::StakeMint:
-        return tr("XOS Stake");
+        return tr("ZNZ Stake");
     case TransactionRecord::SuperStake:
-        return tr("XOS SuperStake");
+        return tr("ZNZ SuperStake");
     case TransactionRecord::StakeDelegated:
-        return tr("XOS Cold Stake");
+        return tr("ZNZ Cold Stake");
     case TransactionRecord::StakeHot:
-        return tr("XOS Stake on behalf of");
+        return tr("ZNZ Stake on behalf of");
     case TransactionRecord::P2CSDelegationSent:
     case TransactionRecord::P2CSDelegationSentOwner:
     case TransactionRecord::P2CSDelegation:

@@ -16,7 +16,7 @@
 #include "swifttx.h"    // mapTxLockReq
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zxoschain.h"
+#include "zpivchain.h"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
@@ -33,7 +33,7 @@ bool fSendFreeTransactions = false;
 bool fPayAtLeastCustomFee = true;
 
 /**
- * Fees smaller than this (in uXOS) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in uZNZ) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -1641,7 +1641,7 @@ CAmount CWalletTx::GetUnlockedCredit() const
         const CTxOut& txout = vout[i];
 
         if (pwallet->IsSpent(hashTx, i) || pwallet->IsLockedCoin(hashTx, i)) continue;
-        if (fMasterNode && vout[i].nValue == 285 * COIN) continue; // do not count MN-like outputs
+        if (fMasterNode && vout[i].nValue == 15000 * COIN) continue; // do not count MN-like outputs
 
         nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
         if (!Params().GetConsensus().MoneyRange(nCredit))
@@ -1675,7 +1675,7 @@ CAmount CWalletTx::GetLockedCredit() const
         }
 
         // Add masternode collaterals which are handled likc locked coins
-        else if (fMasterNode && vout[i].nValue == 285 * COIN) {
+        else if (fMasterNode && vout[i].nValue == 15000 * COIN) {
             nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
         }
 
@@ -1749,8 +1749,8 @@ CAmount CWalletTx::GetLockedWatchOnlyCredit() const
             nCredit += pwallet->GetCredit(txout, ISMINE_WATCH_ONLY);
         }
 
-        // Add masternode collaterals which are handled like locked coins
-        else if (fMasterNode && vout[i].nValue == 285 * COIN) {
+        // Add masternode collaterals which are handled likc locked coins
+        else if (fMasterNode && vout[i].nValue == 15000 * COIN) {
             nCredit += pwallet->GetCredit(txout, ISMINE_WATCH_ONLY);
         }
 
@@ -2238,7 +2238,7 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != 285 * COIN) {
+    if (txOut.nValue != 15000 * COIN) {
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
 
@@ -2304,14 +2304,14 @@ bool CWallet::AvailableCoins(
                 bool found = false;
                 if (nCoinType == ONLY_DENOMINATED) {
                     found = IsDenominatedAmount(pcoin->vout[i].nValue);
-                } else if (nCoinType == ONLY_NOT285IFMN) {
-                    found = !(fMasterNode && pcoin->vout[i].nValue == 285 * COIN);
-                } else if (nCoinType == ONLY_NONDENOMINATED_NOT285IFMN) {
+                } else if (nCoinType == ONLY_NOT15000IFMN) {
+                    found = !(fMasterNode && pcoin->vout[i].nValue == 15000 * COIN);
+                } else if (nCoinType == ONLY_NONDENOMINATED_NOT15000IFMN) {
                     if (IsCollateralAmount(pcoin->vout[i].nValue)) continue; // do not use collateral amounts
                     found = !IsDenominatedAmount(pcoin->vout[i].nValue);
-                    if (found && fMasterNode) found = pcoin->vout[i].nValue != 285 * COIN; // do not use Hot MN funds
-                } else if (nCoinType == ONLY_285) {
-                    found = pcoin->vout[i].nValue == 285 * COIN;
+                    if (found && fMasterNode) found = pcoin->vout[i].nValue != 15000 * COIN; // do not use Hot MN funds
+                } else if (nCoinType == ONLY_15000) {
+                    found = pcoin->vout[i].nValue == 15000 * COIN;
                 } else {
                     found = true;
                 }
@@ -2324,7 +2324,7 @@ bool CWallet::AvailableCoins(
                 if (  (mine == ISMINE_NO) ||
                       ((mine == ISMINE_MULTISIG || mine == ISMINE_SPENDABLE) && nWatchonlyConfig == 2) ||
                       (mine == ISMINE_WATCH_ONLY && nWatchonlyConfig == 1) ||
-                      (IsLockedCoin((*it).first, i) && nCoinType != ONLY_285) ||
+                      (IsLockedCoin((*it).first, i) && nCoinType != ONLY_15000) ||
                       (pcoin->vout[i].nValue <= 0 && !fIncludeZeroValue) ||
                       (fCoinsSelected && !coinControl->fAllowOtherInputs && !coinControl->IsSelected((*it).first, i))
                    ) continue;
@@ -2589,7 +2589,7 @@ bool CWallet::GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useI
     CAmount nFeeRet = 0;
     std::string strFail = "";
     std::vector<std::pair<CScript, CAmount> > vecSend;
-    vecSend.push_back(std::make_pair(scriptChange, BUDGET_FEE_TX_OLD)); // Old 2 XOS collateral
+    vecSend.push_back(std::make_pair(scriptChange, BUDGET_FEE_TX_OLD)); // Old 50 ZNZ collateral
 
     CCoinControl* coinControl = NULL;
     bool success = CreateTransaction(vecSend, tx, reservekey, nFeeRet, strFail, coinControl, ALL_COINS, useIX, (CAmount)0);
@@ -2612,7 +2612,7 @@ bool CWallet::GetBudgetFinalizationCollateralTX(CWalletTx& tx, uint256 hash, boo
     CAmount nFeeRet = 0;
     std::string strFail = "";
     std::vector<std::pair<CScript, CAmount> > vecSend;
-    vecSend.push_back(std::make_pair(scriptChange, BUDGET_FEE_TX)); // New 5 XOS collateral
+    vecSend.push_back(std::make_pair(scriptChange, BUDGET_FEE_TX)); // New 5 ZNZ collateral
 
     CCoinControl* coinControl = NULL;
     bool success = CreateTransaction(vecSend, tx, reservekey, nFeeRet, strFail, coinControl, ALL_COINS, useIX, (CAmount)0);
@@ -2705,10 +2705,10 @@ bool CWallet::CreateTransaction(const std::vector<std::pair<CScript, CAmount> >&
                 if (!SelectCoins(nTotalValue, setCoins, nValueIn, coinControl, coin_type, useIX, false, fIncludeDelegated)) {
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
-                    } else if (coin_type == ONLY_NOT285IFMN) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 285 XOS.");
-                    } else if (coin_type == ONLY_NONDENOMINATED_NOT285IFMN) {
-                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 285 XOS.");
+                    } else if (coin_type == ONLY_NOT15000IFMN) {
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 15000 ZNZ.");
+                    } else if (coin_type == ONLY_NONDENOMINATED_NOT15000IFMN) {
+                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 15000 ZNZ.");
                     } else {
                         strFailReason = _("Unable to locate enough Obfuscation denominated funds for this transaction.");
                         strFailReason += " " + _("Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");
@@ -2749,7 +2749,7 @@ bool CWallet::CreateTransaction(const std::vector<std::pair<CScript, CAmount> >&
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-OASIS-address
+                    // change transaction isn't always pay-to-ZENZO-address
                     CScript scriptChange;
                     bool combineChange = false;
 
@@ -2886,10 +2886,10 @@ bool CWallet::CreateCoinStake(
         return false;
     }
 
-    // Parse utxos into COasisStakes
+    // Parse utxos into CPivStakes
     std::list<std::unique_ptr<CStakeInput> > listInputs;
     for (const COutput &out : vCoins) {
-        std::unique_ptr<COasisStake> input(new COasisStake());
+        std::unique_ptr<CPivStake> input(new CPivStake());
         input->SetPrevout((CTransaction) *out.tx, out.i);
         listInputs.emplace_back(std::move(input));
     }
@@ -2932,7 +2932,7 @@ bool CWallet::CreateCoinStake(
 
         // Calculate reward
         CAmount nReward;
-        //Modified to match current Oasis createcoinstake
+        //Modified to match current Zenzo createcoinstake
         nReward = GetBlockValue(chainActive.Height());
         nCredit += nReward;
 
@@ -2985,7 +2985,7 @@ bool CWallet::CreateCoinStake(
     if (!fKernelFound)
         return false;
 
-    // Sign for XOS stakes
+    // Sign for ZNZ stakes
     int nIn = 0;
     for (CTxIn txIn : txNew.vin) {
         const CWalletTx *wtx = GetWalletTx(txIn.prevout.hash);

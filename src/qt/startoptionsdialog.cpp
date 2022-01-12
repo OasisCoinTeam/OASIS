@@ -1,5 +1,5 @@
 #if defined(HAVE_CONFIG_H)
-#include <config/oasis-config.h>
+#include <config/pivx-config.h>
 #endif
 
 #include <startoptionsdialog.h>

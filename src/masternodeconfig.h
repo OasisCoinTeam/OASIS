@@ -108,12 +108,8 @@ public:
     int getCount()
     {
         int c = -1;
-        int mnc = 0;
         for (CMasternodeEntry e : entries) {
-            if (e.getAlias() != ""){
-                ++mnc;
-                c = mnc;
-            }
+            if (e.getAlias() != "") c++;
         }
         return c;
     }

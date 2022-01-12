@@ -20,14 +20,14 @@
 #include "pairresult.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zxos/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "util/memory.h"
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
 #include "wallet/walletdb.h"
-#include "zxos/zxosmodule.h"
+#include "zpiv/zpivmodule.h"
 
 #include <algorithm>
 #include <map>
@@ -51,11 +51,11 @@ extern bool fPayAtLeastCustomFee;
 
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 0;
-//! -paytxfee will warn if called with a higher fee than this amount (in xos) per KB
+//! -paytxfee will warn if called with a higher fee than this amount (in zens) per KB
 static const CAmount nHighTransactionFeeWarning = 0.1 * COIN;
 //! -maxtxfee default
 static const CAmount DEFAULT_TRANSACTION_MAXFEE = 1 * COIN;
-//! -maxtxfee will warn if called with a higher fee than this amount (in xos)
+//! -maxtxfee will warn if called with a higher fee than this amount (in zens)
 static const CAmount nHighTransactionMaxFeeWarning = 100 * nHighTransactionFeeWarning;
 //! Largest (in bytes) free transaction we're willing to create
 static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 1000;
@@ -90,9 +90,9 @@ enum WalletFeature {
 enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
-    ONLY_NOT285IFMN = 3,
-    ONLY_NONDENOMINATED_NOT285IFMN = 4,           // ONLY_NONDENOMINATED and not 285 XOS at the same time
-    ONLY_285 = 5,                                 // find masternode outputs including locked ones (use with caution)
+    ONLY_NOT15000IFMN = 3,
+    ONLY_NONDENOMINATED_NOT15000IFMN = 4,           // ONLY_NONDENOMINATED and not 15000 ZNZ at the same time
+    ONLY_15000 = 5,                                 // find masternode outputs including locked ones (use with caution)
     STAKEABLE_COINS = 6                             // UTXO's that are valid for staking
 };
 
@@ -238,7 +238,7 @@ public:
     //TODO move to private after createwalletfromfile has been backported
     void MarkPreSplitKeys();
 
-    static const CAmount DEFAULT_STAKE_SPLIT_THRESHOLD = 30 * COIN;
+    static const int DEFAULT_STAKE_SPLIT_THRESHOLD = 2000;
 
     bool StakeableCoins(std::vector<COutput>* pCoins = nullptr);
     bool IsCollateralAmount(CAmount nInputAmount) const;
@@ -338,7 +338,7 @@ public:
     std::map<CBitcoinAddress, std::vector<COutput> > AvailableCoinsByAddress(bool fConfirmed = true, CAmount maxCoinValue = 0);
     bool SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int nConfTheirs, std::vector<COutput> vCoins, std::set<std::pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet) const;
 
-    /// Get 285 XOS output and keys which can be used for the Masternode
+    /// Get 15000 ZNZ output and keys which can be used for the Masternode
     bool GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet, std::string strTxHash = "", std::string strOutputIndex = "");
     /// Extract txin information and keys from output
     bool GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet, bool fColdStake = false);

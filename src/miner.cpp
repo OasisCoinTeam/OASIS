@@ -38,7 +38,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// OASISMiner
+// ZENZOMiner
 //
 
 //
@@ -121,14 +121,20 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     const int nHeight = pindexPrev->nHeight + 1;
 
     // Make sure to create the correct block version
-        const Consensus::Params& consensus = Params().GetConsensus();              
-        //pblock->nVersion =7; // (Activations & Removals documented in primitives/block.h)
-        pblock->nVersion = CBlockHeader::CURRENT_VERSION;
-
+    const Consensus::Params& consensus = Params().GetConsensus();
+    bool isAfterRHF = consensus.IsPastRHFBlock(nHeight);
+    if (nHeight < consensus.height_start_ZC)
+        pblock->nVersion = 3; // Pre-Zerocoin activation
+    else if (!isAfterRHF)
+        pblock->nVersion = 4; // Post-Zerocoin activation
+    else
+        pblock->nVersion = 5; // The reverse hardfork, complete zerocoin deactivation and more.
+                              // (Activations & Removals documented in primitives/block.h)
 
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().IsRegTestNet()) {
+        if (nHeight < consensus.height_start_ZC) pblock->nVersion = 3;
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
     }
 
@@ -235,7 +241,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
                 int nConf = nHeight - coins->nHeight;
 
-                // zXOS spends can have (had) very large priority, use non-overflowing safe functions
+                // zZNZ spends can have (had) very large priority, use non-overflowing safe functions
                 dPriority = double_safe_addition(dPriority, ((double)nValueIn * nConf));
 
             }
@@ -469,7 +475,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         WAIT_LOCK(g_best_block_mutex, lock);
         if (pblock->hashPrevBlock != g_best_block)
-            return error("OASISMiner : generated block is stale");
+            return error("ZENZOMiner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -481,7 +487,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, NULL, pblock)) {
-        return error("OASISMiner : ProcessNewBlock, block not accepted");
+        return error("ZENZOMiner : ProcessNewBlock, block not accepted");
     }
 
     for (CNode* node : vNodes) {
@@ -505,12 +511,11 @@ void CheckForCoins(CWallet* pwallet, const int minutes)
     }
 }
 
-
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("OASISMiner started\n");
+    LogPrintf("ZENZOMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    util::ThreadRename("oasis-miner");
+    util::ThreadRename("zenzo-miner");
     const int64_t nSpacingMillis = Params().GetConsensus().nTargetSpacing * 1000;
     const int last_pow_block = Params().GetConsensus().height_last_PoW;
 
@@ -581,7 +586,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         // POW - miner main
         IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-        LogPrintf("Running OASISMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running ZENZOMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
@@ -667,12 +672,12 @@ void static ThreadBitcoinMiner(void* parg)
         BitcoinMiner(pwallet, false);
         boost::this_thread::interruption_point();
     } catch (const std::exception& e) {
-        LogPrintf("OASISMiner exception");
+        LogPrintf("ZENZOMiner exception");
     } catch (...) {
-        LogPrintf("OASISMiner exception");
+        LogPrintf("ZENZOMiner exception");
     }
 
-    LogPrintf("OASISMiner exiting\n");
+    LogPrintf("ZENZOMiner exiting\n");
 }
 
 void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)

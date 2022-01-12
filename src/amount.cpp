@@ -9,29 +9,29 @@
 #include "tinyformat.h"
 
 /*
-   The smallest denomination of a XOS is known as:
-   mxos (or xos), ex: 56 xos-per-byte fee
+   The smallest denomination of a ZNZ is known as:
+   zen (or zens), ex: 56 zens-per-byte fee
 */
 
 CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
 {
     if (nSize > 0)
-        nXosPerK = nFeePaid * 1000 / nSize;
+        nZensPerK = nFeePaid * 1000 / nSize;
     else
-        nXosPerK = 0;
+        nZensPerK = 0;
 }
 
 CAmount CFeeRate::GetFee(size_t nSize) const
 {
-    CAmount nFee = nXosPerK * nSize / 1000;
+    CAmount nFee = nZensPerK * nSize / 1000;
 
-    if (nFee == 0 && nXosPerK > 0)
-        nFee = nXosPerK;
+    if (nFee == 0 && nZensPerK > 0)
+        nFee = nZensPerK;
 
     return nFee;
 }
 
 std::string CFeeRate::ToString() const
 {
-    return strprintf("%d.%08d xos/kB", nXosPerK / COIN, nXosPerK % COIN);
+    return strprintf("%d.%08d zens/kB", nZensPerK / COIN, nZensPerK % COIN);
 }

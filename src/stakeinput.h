@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef OASIS_STAKEINPUT_H
-#define OASIS_STAKEINPUT_H
+#ifndef PIVX_STAKEINPUT_H
+#define PIVX_STAKEINPUT_H
 
 #include "chain.h"
 #include "streams.h"
@@ -31,14 +31,14 @@ public:
 };
 
 
-class COasisStake : public CStakeInput
+class CPivStake : public CStakeInput
 {
 private:
     CTransaction txFrom{CTransaction()};
     unsigned int nPosition{0};
 
 public:
-    COasisStake() {}
+    CPivStake() {}
 
     bool InitFromTxIn(const CTxIn& txin);
     bool SetPrevout(CTransaction txPrev, unsigned int n);
@@ -53,4 +53,4 @@ public:
 };
 
 
-#endif //OASIS_STAKEINPUT_H
+#endif //PIVX_STAKEINPUT_H
