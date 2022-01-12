@@ -15,7 +15,7 @@ QT_BEGIN_NAMESPACE
 class QNetworkProxy;
 QT_END_NAMESPACE
 
-/** Interface from Qt to configuration data structure for OASIS client.
+/** Interface from Qt to configuration data structure for ZENZO client.
    To Qt, the options are presented as a list with the different options
    laid out vertically.
    This can be changed to a tree once the settings become sufficiently
@@ -29,29 +29,28 @@ public:
     explicit OptionsModel(QObject* parent = 0);
 
     enum OptionID {
-        StartAtStartup,         // bool
-        MinimizeToTray,         // bool
-        MapPortUPnP,            // bool
-        MinimizeOnClose,        // bool
-        ProxyUse,               // bool
-        ProxyIP,                // QString
-        ProxyPort,              // int
-        DisplayUnit,            // BitcoinUnits::Unit
-        ThirdPartyTxUrls,       // QString
-        Digits,                 // QString
-        Theme,                  // QString
-        Language,               // QString
-        CoinControlFeatures,    // bool
-        ThreadsScriptVerif,     // int
-        DatabaseCache,          // int
-        SpendZeroConfChange,    // 
-        HideCharts,             // bool
-        HideZeroBalances,       // bool
-        HideOrphans,            // bool
-        ShowMasternodesTab,     // bool
-        Listen,                 // bool
-        StakeSplitThreshold,    // int
-        ShowColdStakingScreen,  // bool
+        StartAtStartup,      // bool
+        MinimizeToTray,      // bool
+        MapPortUPnP,         // bool
+        MinimizeOnClose,     // bool
+        ProxyUse,            // bool
+        ProxyIP,             // QString
+        ProxyPort,           // int
+        DisplayUnit,         // BitcoinUnits::Unit
+        ThirdPartyTxUrls,    // QString
+        Digits,              // QString
+        Theme,               // QString
+        Language,            // QString
+        CoinControlFeatures, // bool
+        ThreadsScriptVerif,  // int
+        DatabaseCache,       // int
+        SpendZeroConfChange, // bool
+        HideZeroBalances,    // bool
+        HideOrphans,    // bool
+        ShowMasternodesTab,  // bool
+        Listen,              // bool
+        StakeSplitThreshold, // int
+        ShowColdStakingScreen, // bool
         OptionIDRowCount,
     };
 
@@ -68,7 +67,6 @@ public:
     void setStakeSplitThreshold(const CAmount value);
 
     /* Explicit getters */
-    bool isHideCharts() { return fHideCharts; }
     bool getMinimizeToTray() { return fMinimizeToTray; }
     bool getMinimizeOnClose() { return fMinimizeOnClose; }
     int getDisplayUnit() { return nDisplayUnit; }
@@ -108,7 +106,6 @@ private:
     QString strThirdPartyTxUrls;
     bool fCoinControlFeatures;
     bool showColdStakingScreen;
-    bool fHideCharts;
     bool fHideZeroBalances;
     bool fHideOrphans;
     /* settings that were overriden by command-line */
@@ -121,7 +118,6 @@ Q_SIGNALS:
     void displayUnitChanged(int unit);
     void coinControlFeaturesChanged(bool);
     void showHideColdStakingScreen(bool);
-    void hideChartsChanged(bool);
     void hideZeroBalancesChanged(bool);
     void hideOrphansChanged(bool);
 };

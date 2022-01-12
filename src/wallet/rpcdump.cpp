@@ -77,12 +77,12 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 4)
         throw std::runtime_error(
-            "importprivkey \"oasisprivkey\" ( \"label\" rescan fStakingAddress )\n"
+            "importprivkey \"zenzoprivkey\" ( \"label\" rescan fStakingAddress )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"oasisprivkey\"      (string, required) The private key (see dumpprivkey)\n"
+            "1. \"zenzoprivkey\"      (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
             "4. fStakingAddress      (boolean, optional, default=false) Whether this key refers to a (cold) staking address\n"
@@ -228,7 +228,7 @@ UniValue importaddress(const UniValue& params, bool fHelp)
         std::vector<unsigned char> data(ParseHex(params[0].get_str()));
         script = CScript(data.begin(), data.end());
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid OASIS address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid ZENZO address or script");
     }
 
     std::string strLabel = "";
@@ -381,13 +381,13 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
-            "dumpprivkey \"oasisaddress\"\n"
-            "\nReveals the private key corresponding to 'oasisaddress'.\n"
+            "dumpprivkey \"zenzoaddress\"\n"
+            "\nReveals the private key corresponding to 'zenzoaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"oasisaddress\"   (string, required) The OASIS address for the private key\n"
+            "1. \"zenzoaddress\"   (string, required) The ZENZO address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -402,7 +402,7 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
     std::string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid OASIS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid ZENZO address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -458,7 +458,7 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
 
     CBlockIndex* tip = chainActive.Tip();
     // produce output
-    file << strprintf("# Wallet dump created by OASIS %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by ZENZO %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     if (tip) {
         file << strprintf("# * Best block at time of backup was %i (%s),\n", tip->nHeight,
@@ -515,12 +515,10 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
             } else if (setKeyPool.count(keyid)) {
                 file << "reserve=1";
             } else {
-                file << "change=1";
+                file << strprintf(" # addr=%s%s\n", strAddr, (pwalletMain->mapHdPubKeys.count(keyid) ? " hdkeypath="+pwalletMain->mapHdPubKeys[keyid].GetKeyPath() : ""));
             }
-            file << strprintf(" # addr=%s%s\n", strAddr, (pwalletMain->mapHdPubKeys.count(keyid) ? " hdkeypath="+pwalletMain->mapHdPubKeys[keyid].GetKeyPath() : ""));
         }
     }
-    
     file << "\n";
     file << "# End of dump\n";
     file.close();
@@ -536,20 +534,20 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38encrypt \"oasisaddress\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to 'oasisaddress'.\n" +
+            "bip38encrypt \"zenzoaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'zenzoaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"oasisaddress\"   (string, required) The OASIS address for the private key (you must hold the key already)\n"
+            "1. \"zenzoaddress\"   (string, required) The ZENZO address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
             "\"key\"                (string) The encrypted private key\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("bip38encrypt", "\"oWBxLjXs5ywmmses1utCRqR4xidGFeV9aT\" \"mypasphrase\"") +
-            HelpExampleRpc("bip38encrypt", "\"oWBxLjXs5ywmmses1utCRqR4xidGFeV9aT\" \"mypasphrase\""));
+            HelpExampleCli("bip38encrypt", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"mypasphrase\"") +
+            HelpExampleRpc("bip38encrypt", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"mypasphrase\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -560,7 +558,7 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid OASIS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid ZENZO address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -582,7 +580,7 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38decrypt \"oasisaddress\" \"passphrase\"\n"
+            "bip38decrypt \"zenzoaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 

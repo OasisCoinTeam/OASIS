@@ -72,12 +72,8 @@ public:
     int getCount()
     {
         int c = -1;
-        int fmc = 0;
         for (CForgeItem e : entries) {
-            if (e.getTxHash() != "") {
-                ++c;                
-                fmc = c; 
-            }     
+            if (e.getTxHash() != "") c++;
         }
         return c;
     }

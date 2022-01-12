@@ -13,7 +13,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/oasis-config.h"
+#include "config/pivx-config.h"
 #endif
 
 #include "compat.h"
@@ -34,14 +34,14 @@
 // Debugging macros
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_OASIS_DEBUG
-#ifdef ENABLE_OASIS_DEBUG
+//#define ENABLE_ZENZO_DEBUG
+#ifdef ENABLE_ZENZO_DEBUG
 #define DBG( x ) x
 #else
 #define DBG( x )
 #endif
 
-// OASIS only features
+// ZENZO only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -207,7 +207,7 @@ void SetThreadPriority(int nPriority);
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("oasis-%s", name);
+    std::string s = strprintf("zenzo-%s", name);
     util::ThreadRename(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);

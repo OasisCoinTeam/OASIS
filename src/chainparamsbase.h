@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between oasis-cli and oasisd)
- * of a given instance of the OASIS system.
+ * CBaseChainParams defines the base parameters (shared between zenzo-cli and zenzod)
+ * of a given instance of the ZENZO system.
  */
 class CBaseChainParams
 {

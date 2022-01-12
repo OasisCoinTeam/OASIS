@@ -33,7 +33,7 @@ void InitParameterInteraction();
 
 bool AppInit2(const std::vector<std::string>& words);
 
-/** Initialize OASIS core: Basic context setup.
+/** Initialize ZENZO core: Basic context setup.
  *  @note This can be done before daemonization. Do not call Shutdown() if this function fails.
  *  @pre Parameters should be parsed and config file should be read.
  */

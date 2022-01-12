@@ -369,7 +369,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                 return InvalidAmount;
             }
             total += subtotal;
-        } else { // User-entered oasis address / amount:
+        } else { // User-entered zenzo address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }
@@ -430,7 +430,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
 
         if (recipients[0].useSwiftTX && total > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {
-            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 XOS.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)),
+            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 ZNZ.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)),
                 CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -448,7 +448,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         transaction.setTransactionFee(nFeeRequired);
 
         if (recipients[0].useSwiftTX && newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {
-            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 XOS.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)),
+            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 ZNZ.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)),
                 CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -501,7 +501,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& tran
                 std::string value;
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(std::make_pair(key, value));
-            } else if (!rcp.message.isEmpty()) // Message from normal oasis:URI (oasis:XyZ...?message=example)
+            } else if (!rcp.message.isEmpty()) // Message from normal zenzo:URI (zenzo:XyZ...?message=example)
             {
                 newTx->vOrderForm.push_back(std::make_pair("Message", rcp.message.toStdString()));
             }
@@ -820,7 +820,7 @@ bool WalletModel::blacklistAddressFromColdStaking(const QString &addressStr) {
 bool WalletModel::updateAddressBookPurpose(const QString &addressStr, const std::string& purpose) {
     CBitcoinAddress address(addressStr.toStdString());
     if (address.IsStakingAddress())
-        return error("Invalid OASIS address, cold staking address");
+        return error("Invalid ZENZO address, cold staking address");
     CKeyID keyID;
     if (!getKeyId(address, keyID))
         return false;
@@ -829,10 +829,10 @@ bool WalletModel::updateAddressBookPurpose(const QString &addressStr, const std:
 
 bool WalletModel::getKeyId(const CBitcoinAddress& address, CKeyID& keyID) {
     if (!address.IsValid())
-        return error("Invalid OASIS address");
+        return error("Invalid ZENZO address");
 
     if (!address.GetKeyID(keyID))
-        return error("Unable to get KeyID from OASIS address");
+        return error("Unable to get KeyID from ZENZO address");
 
     return true;
 }
@@ -863,11 +863,11 @@ void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vect
     }
 }
 
-// returns a COutPoint of 285 XOS if found
+// returns a COutPoint of 15000 ZNZ if found
 bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
     std::vector<COutput> vCoins;
-    wallet->AvailableCoins(&vCoins, true, nullptr, false, ONLY_285);
+    wallet->AvailableCoins(&vCoins, true, nullptr, false, ONLY_15000);
     for (const COutput& out : vCoins) {
         // skip locked collaterals
         if (!isLockedCoin(out.tx->GetHash(), out.i)) {

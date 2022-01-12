@@ -14,7 +14,7 @@
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_oasis.h"
+#include "test/test_pivx.h"
 
 #include <boost/test/unit_test.hpp>
 

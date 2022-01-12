@@ -11,7 +11,6 @@
 #include "uint256.h"
 #include <map>
 #include <string>
-//#include "util.h" //GDiscord
 
 namespace Consensus {
 
@@ -86,12 +85,9 @@ struct Params {
             const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
     {
         // before stake modifier V2, we require the utxo to be nStakeMinAge old
-        if (!IsStakeModifierV2(contextHeight)){
-            //LogPrintf("GDiscord # utxoFromBlockTime %d + nStakeMinAge %d  <= contextTime %d\n", utxoFromBlockTime, nStakeMinAge,contextTime);
-            return true; // (utxoFromBlockTime + nStakeMinAge <= contextTime); // minimum in this chain is block v5, so always return true here.
-        }
+        if (!IsStakeModifierV2(contextHeight))
+            return (utxoFromBlockTime + nStakeMinAge <= contextTime);
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
-        //LogPrintf("GDiscord ## contextHeight %d - utxoFromBlockHeight %d  >= nStakeMinDepth %d\n", contextHeight, utxoFromBlockHeight,nStakeMinDepth);
         return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
     }
 
