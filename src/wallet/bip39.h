@@ -21,8 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef OASIS_BIP39_H
-#define OASIS_BIP39_H
+#ifndef ZENZO_BIP39_H
+#define ZENZO_BIP39_H
 
 #include "allocators.h"
 

@@ -9,7 +9,7 @@
 
 #include "leveldbwrapper.h"
 #include "main.h"
-#include "zxos/zerocoin.h"
+#include "zpiv/zerocoin.h"
 
 #include <map>
 #include <string>
@@ -107,11 +107,11 @@ private:
     void operator=(const CZerocoinDB&);
 
 public:
-    /** Write zXOS mints to the zerocoinDB in a batch */
+    /** Write zPIV mints to the zerocoinDB in a batch */
     bool WriteCoinMintBatch(const std::vector<std::pair<libzerocoin::PublicCoin, uint256> >& mintInfo);
     bool ReadCoinMint(const CBigNum& bnPubcoin, uint256& txHash);
     bool ReadCoinMint(const uint256& hashPubcoin, uint256& hashTx);
-    /** Write zXOS spends to the zerocoinDB in a batch */
+    /** Write zPIV spends to the zerocoinDB in a batch */
     bool WriteCoinSpendBatch(const std::vector<std::pair<libzerocoin::CoinSpend, uint256> >& spendInfo);
     bool ReadCoinSpend(const CBigNum& bnSerial, uint256& txHash);
     bool ReadCoinSpend(const uint256& hashSerial, uint256 &txHash);

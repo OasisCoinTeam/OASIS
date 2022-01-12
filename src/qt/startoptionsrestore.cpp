@@ -6,7 +6,7 @@
 #include <startoptionsrestore.h>
 #include <ui_startoptionsrestore.h>
 #include "guiutil.h"
-#include "qt/oasis/qtutils.h"
+#include "qt/pivx/qtutils.h"
 #include <QLineEdit>
 #include <QLabel>
 

@@ -14,7 +14,7 @@
 #include "script/script_error.h"
 #include "script/sign.h"
 #include "util.h"
-#include "test_oasis.h"
+#include "test_pivx.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
 #include "script/bitcoinconsensus.h"

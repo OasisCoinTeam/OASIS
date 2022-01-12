@@ -9,7 +9,7 @@
 #include "uint256.h"
 #include "version.h"
 #include "consensus/merkle.h"
-#include "test/test_oasis.h"
+#include "test/test_pivx.h"
 
 #include <vector>
 

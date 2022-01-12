@@ -7,7 +7,7 @@
 
 #include "random.h"
 #include "util.h"
-#include "test/test_oasis.h"
+#include "test/test_pivx.h"
 
 #include <set>
 

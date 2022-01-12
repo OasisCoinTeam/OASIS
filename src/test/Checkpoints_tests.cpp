@@ -10,7 +10,7 @@
 #include "checkpoints.h"
 
 #include "uint256.h"
-#include "test_oasis.h"
+#include "test_pivx.h"
 
 #include <boost/test/unit_test.hpp>
 

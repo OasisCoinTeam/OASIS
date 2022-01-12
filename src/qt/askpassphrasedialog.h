@@ -7,12 +7,12 @@
 #define BITCOIN_QT_ASKPASSPHRASEDIALOG_H
 
 #include <QDialog>
-#include "qt/oasis/prunnable.h"
+#include "qt/pivx/prunnable.h"
 #include "allocators.h"
 #include <QCheckBox>
 
 class WalletModel;
-class OASISGUI;
+class ZENZOGUI;
 
 namespace Ui
 {
@@ -43,7 +43,7 @@ public:
         Encrypt,        /** Encrypt unencrypted wallet */
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
-        Send_XOS,       /** Send XOS */
+        Send_ZNZ,       /** Send ZNZ */
         BIP_38,         /** BIP38 menu */
         Multi_Sig,      /** Multi-Signature dialog */
         Sign_Message,   /** Sign/verify message dialog */

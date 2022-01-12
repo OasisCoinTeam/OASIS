@@ -45,7 +45,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 parts.append(sub);
                 return parts;
             } else {
-                // XOS stake reward
+                // ZNZ stake reward
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 sub.type = TransactionRecord::StakeMint;
                 sub.address = CBitcoinAddress(address).ToString();
@@ -101,7 +101,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address)) {
-                    // Received by OASIS Address
+                    // Received by ZENZO Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
@@ -162,7 +162,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.type = TransactionRecord::Obfuscated;
                 CTxDestination address;
                 if (ExtractDestination(wtx.vout[0].scriptPubKey, address)) {
-                    // Sent to OASIS Address
+                    // Sent to ZENZO Address
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
                     // Sent to IP, or other non-address transaction like OP_EVAL
@@ -211,7 +211,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
 
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address)) {
-                    // Sent to OASIS Address
+                    // Sent to ZENZO Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else if (txout.scriptPubKey.IsUnspendable()) {
