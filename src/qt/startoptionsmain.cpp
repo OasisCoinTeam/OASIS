@@ -5,7 +5,7 @@
 #include "ui_startoptionsmain.h"
 #include <startoptionsdialog.h>
 #include "guiutil.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/oasis/qtutils.h"
 
 #include <qt/guiutil.h>
 #include <QDebug>
@@ -28,7 +28,7 @@ StartOptionsMain::StartOptionsMain(QWidget *parent)
     ui->setupUi(this);
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
-    this->setWindowTitle("ZENZO Wallet Setup");
+    this->setWindowTitle("OASIS Wallet Setup");
 
 
     wordsList = CMnemonic::getListOfAllWordInLanguage();
@@ -40,7 +40,7 @@ StartOptionsMain::StartOptionsMain(QWidget *parent)
     if(isLightTheme()){
         this->setStyleSheet("*{background-color: #FFFFFF;color: black;}");
     }else{
-        this->setStyleSheet("*{background-color: #5c4b7d;color: #FFFFFF;}");
+        this->setStyleSheet("*{background-color: #5b237a;color: #FFFFFF;}");
     }
 
 

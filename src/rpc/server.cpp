@@ -265,11 +265,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop ZENZO server.");
+            "\nStop OASIS server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "ZENZO server stopping";
+    return "OASIS server stopping";
 }
 
 
@@ -355,36 +355,36 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* ZENZO features */
-        {"zenzo", "listmasternodes", &listmasternodes, true, true, false},
-        {"zenzo", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"zenzo", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"zenzo", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"zenzo", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"zenzo", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"zenzo", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"zenzo", "masternodedebug", &masternodedebug, true, true, false},
-        {"zenzo", "reloadmasternodeconfig", &reloadmasternodeconfig, true, true, false},
-        {"zenzo", "startmasternode", &startmasternode, true, true, false},
-        {"zenzo", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"zenzo", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"zenzo", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"zenzo", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"zenzo", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"zenzo", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"zenzo", "preparebudget", &preparebudget, true, true, false},
-        {"zenzo", "submitbudget", &submitbudget, true, true, false},
-        {"zenzo", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"zenzo", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"zenzo", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"zenzo", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"zenzo", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"zenzo", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"zenzo", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"zenzo", "checkbudgets", &checkbudgets, true, true, false},
-        {"zenzo", "mnsync", &mnsync, true, true, false},
-        {"zenzo", "spork", &spork, true, true, false},
-        {"zenzo", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* OASIS features */
+        {"oasis", "listmasternodes", &listmasternodes, true, true, false},
+        {"oasis", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"oasis", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"oasis", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"oasis", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"oasis", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"oasis", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"oasis", "masternodedebug", &masternodedebug, true, true, false},
+        {"oasis", "reloadmasternodeconfig", &reloadmasternodeconfig, true, true, false},
+        {"oasis", "startmasternode", &startmasternode, true, true, false},
+        {"oasis", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"oasis", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"oasis", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"oasis", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"oasis", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"oasis", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"oasis", "preparebudget", &preparebudget, true, true, false},
+        {"oasis", "submitbudget", &submitbudget, true, true, false},
+        {"oasis", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"oasis", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"oasis", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"oasis", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"oasis", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"oasis", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"oasis", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"oasis", "checkbudgets", &checkbudgets, true, true, false},
+        {"oasis", "mnsync", &mnsync, true, true, false},
+        {"oasis", "spork", &spork, true, true, false},
+        {"oasis", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -622,14 +622,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> zenzo-cli " + methodname + " " + args + "\n";
+    return "> oasis-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:26211/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:3357/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=oasis Core
+Comment=oasis P2P Cryptocurrency
+Exec=oasis-qt %u
+Terminal=false
+Type=Application
+Icon=oasis128
+MimeType=x-scheme-handler/oasis;
+Categories=Office;Finance;
+StartupWMClass=oasis-qt
+Name[en_US]=oasis-qt.desktop
