@@ -13,7 +13,7 @@
 #include "spork.h"
 
 //
-// Bootup the Masternode, look for a 15000 ZNZ input and register on the network
+// Bootup the Masternode, look for a 285 XOS input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
@@ -398,7 +398,7 @@ std::vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == 15000 * COIN) { //exactly
+        if (out.tx->vout[out.i].nValue == 285 * COIN) { //exactly
             filteredCoins.push_back(out);
         }
     }

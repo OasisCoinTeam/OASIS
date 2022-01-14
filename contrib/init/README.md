@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: zenzod.service
-Upstart: zenzod.conf
-OpenRC:  zenzod.openrc
-         zenzod.openrcconf
-CentOS:  zenzod.init
-macOS:    org.zenzo.zenzod.plist
+SystemD: oasisd.service
+Upstart: oasisd.conf
+OpenRC:  oasisd.openrc
+         oasisd.openrcconf
+CentOS:  oasisd.init
+macOS:    org.oasis.oasisd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

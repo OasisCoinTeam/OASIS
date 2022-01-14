@@ -1,10 +1,10 @@
 (note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-PIVX Core version *version* is now available from:  <https://github.com/pivx-project/pivx/releases>
+OASIS Core version *version* is now available from:  <https://github.com/OasisCoinTeam/oasis/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/pivx-project/pivx/issues>
+Please report bugs using the issue tracker at github: <https://github.com/OasisCoinTeam/oasis/issues>
 
 
 Mandatory Update
@@ -14,19 +14,19 @@ Mandatory Update
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/OASIS-Qt (on Mac) or oasisd/oasis-qt (on Linux).
 
 
 Compatibility
 ==============
 
-PIVX Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
+OASIS Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). PIVX Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
+Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). OASIS Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
 
-PIVX Core should also work on most other Unix-like systems but is not frequently tested on them.
+OASIS Core should also work on most other Unix-like systems but is not frequently tested on them.
 
 
 Notable Changes
@@ -38,12 +38,12 @@ Notable Changes
 
 Wallets under a tree derivation structure in which keypairs are generated deterministically from a single seed, which can be shared partially or entirely with different systems, each with or without the ability to spend coins, [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki).
 
-Enabling major improvements over the keystore management, the PIVX wallet doesn't require regular backups as before, keys are following a deterministic creation path that can be verified at any time (before HD Wallet, every keypair was randomly created and added to the keypool, forcing the user to backup the wallet every certain amount of time or could end up loosing coins forever if the latest `wallet.dat` was not being used).
+Enabling major improvements over the keystore management, the OASIS wallet doesn't require regular backups as before, keys are following a deterministic creation path that can be verified at any time (before HD Wallet, every keypair was randomly created and added to the keypool, forcing the user to backup the wallet every certain amount of time or could end up loosing coins forever if the latest `wallet.dat` was not being used).
 As well as new possibilities like the account extended public key that enables deterministic public keys creation without the private keys requisite inside the wallet (A good use case could be online stores generating fresh addresses).
 
 This work includes a customization/extension to the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) standard. We have included an unique staking keys derivation path which introduced the deterministic generation/recovery of staking addresses.
 
-An extended description of this large work can be found in the PR [here](https://github.com/PIVX-Project/PIVX/pull/1327).
+An extended description of this large work can be found in the PR [here](https://github.com/OasisCoinTeam/oasis/pull/1327).
 
 #### HD Wallet FAQ
 
@@ -65,20 +65,20 @@ An extended description of this large work can be found in the PR [here](https:/
 
 ### Functional Changes
 
-Automatic zPIV backup has been disabled. Thus, the following configuration options have been removed  (either as entries in the pivx.conf file or as startup flags):
-- `autozpivbackup`
-- `backupzpiv`
-- `zpivbackuppath`
+Automatic zXOS backup has been disabled. Thus, the following configuration options have been removed  (either as entries in the oasis.conf file or as startup flags):
+- `autozxosbackup`
+- `backupzxos`
+- `zxosbackuppath`
 
 ### Stake-Split threshold
 The stake split threshold is no longer required to be integer. It can be a fractional amount. A threshold value of 0 disables the stake-split functionality.
-The default value for the stake-split threshold has been lowered from 2000 PIV, down  to 500 PIV.
+The default value for the stake-split threshold has been lowered from 2000 XOS, down  to 500 XOS.
 
 
 Dependencies
 ------------
 
-The minimum required version of QT has been increased from 5.0 to 5.5.1 (the [depends system](https://github.com/pivx-project/pivx/blob/master/depends/README.md) provides 5.9.7)
+The minimum required version of QT has been increased from 5.0 to 5.5.1 (the [depends system](https://github.com/OasisCoinTeam/oasis/blob/master/depends/README.md) provides 5.9.7)
 
 
 RPC Changes
@@ -113,13 +113,13 @@ RPC Changes
   ```
   {
      "staking_status": true|false,       (boolean) whether the wallet is staking or not
-     "staking_enabled": true|false,      (boolean) whether staking is enabled/disabled in pivx.conf
-     "coldstaking_enabled": true|false,  (boolean) whether cold-staking is enabled/disabled in pivx.conf
+     "staking_enabled": true|false,      (boolean) whether staking is enabled/disabled in oasis.conf
+     "coldstaking_enabled": true|false,  (boolean) whether cold-staking is enabled/disabled in oasis.conf
      "haveconnections": true|false,      (boolean) whether network connections are present
      "mnsync": true|false,               (boolean) whether masternode data is synced
      "walletunlocked": true|false,       (boolean) whether the wallet is unlocked
      "stakeablecoins": n,                (numeric) number of stakeable UTXOs
-     "stakingbalance": d,                (numeric) PIV value of the stakeable coins (minus reserve balance, if any)
+     "stakingbalance": d,                (numeric) XOS value of the stakeable coins (minus reserve balance, if any)
      "stakesplitthreshold": d,           (numeric) value of the current threshold for stake split
      "lastattempt_age": n,               (numeric) seconds since last stake attempt
      "lastattempt_depth": n,             (numeric) depth of the block on top of which the last stake attempt was made
@@ -157,17 +157,17 @@ Detailed release notes follow. This overview includes changes that affect behavi
 
 ### P2P Protocol and Network Code
 
-The p2p alert system has been removed in [#1372](https://github.com/PIVX-Project/PIVX/pull/1372) and the 'alert' message is no longer supported.
+The p2p alert system has been removed in [#1372](https://github.com/OasisCoinTeam/oasis/pull/1372) and the 'alert' message is no longer supported.
 
 ### GUI
 
-Keyboard navigation: dialogs can now be accepted with the `ENTER` (`RETURN`) key, and dismissed with the `ESC` key ([#1392](https://github.com/PIVX-Project/PIVX/pull/1392)).
+Keyboard navigation: dialogs can now be accepted with the `ENTER` (`RETURN`) key, and dismissed with the `ESC` key ([#1392](https://github.com/OasisCoinTeam/oasis/pull/1392)).
 
 ### RPC/REST
 
 ### Wallet
 
-The `-reservebalance` configuration/startup option has been removed ([PR #1373](https://github.com/PIVX-Project/PIVX/pull/1373)).
+The `-reservebalance` configuration/startup option has been removed ([PR #1373](https://github.com/OasisCoinTeam/oasis/pull/1373)).
 
 ### Miscellaneous
 
@@ -176,4 +176,4 @@ The `-reservebalance` configuration/startup option has been removed ([PR #1373](
 Thanks to everyone who directly contributed to this release:
 
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivx-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/OasisCoinTeam-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

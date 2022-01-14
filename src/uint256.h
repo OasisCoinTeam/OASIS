@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_UINT256_H
-#define PIVX_UINT256_H
+#ifndef OASIS_UINT256_H
+#define OASIS_UINT256_H
 
 #include <assert.h>
 #include <cstring>
@@ -420,4 +420,4 @@ inline uint512 uint512S(const std::string& str)
 const uint256 UINT256_ZERO = uint256();
 const uint256 UINT256_ONE = uint256("0000000000000000000000000000000000000000000000000000000000000001");
 
-#endif // PIVX_UINT256_H
+#endif // OASIS_UINT256_H

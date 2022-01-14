@@ -19,7 +19,7 @@
 #include "obfuscation.h"
 #include "wallet/wallet.h"
 
-#include "qt/pivx/qtutils.h"
+#include "qt/oasis/qtutils.h"
 
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 
@@ -687,7 +687,7 @@ void CoinControlDialog::updateLabels(WalletModel* model, QDialog* dialog)
     }
 
     // actually update labels
-    int nDisplayUnit = BitcoinUnits::PIV;
+    int nDisplayUnit = BitcoinUnits::XOS;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
@@ -735,13 +735,13 @@ void CoinControlDialog::updateLabels(WalletModel* model, QDialog* dialog)
 
     QString toolTip3 = tr("This label turns red, if any recipient receives an amount smaller than %1.").arg(BitcoinUnits::formatWithUnit(nDisplayUnit, ::minRelayTxFee.GetFee(546)));
 
-    // how many zens the estimated fee can vary per byte we guess wrong
+    // how many xos the estimated fee can vary per byte we guess wrong
     double dFeeVary;
     if (payTxFee.GetFeePerK() > 0)
         dFeeVary = (double)std::max(CWallet::minTxFee.GetFeePerK(), payTxFee.GetFeePerK()) / 1000;
     else
         dFeeVary = (double)std::max(CWallet::minTxFee.GetFeePerK(), mempool.estimateFee(nTxConfirmTarget).GetFeePerK()) / 1000;
-    QString toolTip4 = tr("Can vary +/- %1 uZNZ per input.").arg(dFeeVary);
+    QString toolTip4 = tr("Can vary +/- %1 uXOS per input.").arg(dFeeVary);
 
     l3->setToolTip(toolTip4);
     l4->setToolTip(toolTip4);
@@ -861,7 +861,7 @@ void CoinControlDialog::updateView()
             if (haveDest) {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
-                // if listMode or change => show ZENZO address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show OASIS address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress)))
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
                 else

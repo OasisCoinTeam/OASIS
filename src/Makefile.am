@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += zenzod
+  bin_PROGRAMS += oasisd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += zenzo-cli zenzo-tx
+  bin_PROGRAMS += oasis-cli oasis-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# zenzo core #
+# oasis core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -190,11 +190,11 @@ BITCOIN_CORE_H = \
   wallet/wallet.h \
   wallet/wallet_ismine.h \
   wallet/walletdb.h \
-  zpivchain.h \
-  zpiv/deterministicmint.h \
-  zpiv/mintpool.h \
-  zpiv/zerocoin.h \
-  zpiv/zpivmodule.h \
+  zxoschain.h \
+  zxos/deterministicmint.h \
+  zxos/mintpool.h \
+  zxos/zerocoin.h \
+  zxos/zxosmodule.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h \
   zmq/zmqnotificationinterface.h \
@@ -206,7 +206,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between zenzod and zenzo-qt
+# server: shared between oasisd and oasis-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -243,7 +243,7 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   validationinterface.cpp \
-  zpivchain.cpp \
+  zxoschain.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -255,7 +255,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between zenzod and zenzo-qt, but only linked
+# wallet: shared between oasisd and oasis-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -284,11 +284,11 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/wallet_ismine.cpp \
   wallet/walletdb.cpp \
-  zpiv/deterministicmint.cpp \
-  zpiv/zerocoin.cpp \
-  zpiv/mintpool.cpp \
+  zxos/deterministicmint.cpp \
+  zxos/zerocoin.cpp \
+  zxos/mintpool.cpp \
   stakeinput.cpp \
-  zpiv/zpivmodule.cpp \
+  zxos/zxosmodule.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
@@ -305,28 +305,13 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/scrypt.cpp \
   crypto/ripemd160.cpp \
-  crypto/sph_md_helper.c \
-  crypto/sph_sha2big.c \
   crypto/aes_helper.c \
   crypto/blake.c \
   crypto/bmw.c \
   crypto/groestl.c \
   crypto/jh.c \
-  crypto/luffa.c \
   crypto/keccak.c \
   crypto/skein.c \
-  crypto/cubehash.c \
-  crypto/shavite.c \
-  crypto/shabal.c \
-  crypto/simd.c \
-  crypto/echo.c \
-  crypto/whirlpool.c \
-  crypto/haval.c \
-  crypto/haval_helper.c \
-  crypto/hamsi.c \
-  crypto/hamsi_helper.c \
-  crypto/fugue.c \
-  crypto/sha2.c \
   crypto/common.h \
   crypto/sha256.h \
   crypto/sha512.h \
@@ -341,18 +326,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_groestl.h \
   crypto/sph_jh.h \
   crypto/sph_keccak.h \
-  crypto/sph_luffa.h \
-  crypto/sph_shavite.h \
-  crypto/sph_hamsi.h \
-  crypto/sph_cubehash.h \
   crypto/sph_skein.h \
-  crypto/sph_simd.h \
-  crypto/sph_fugue.h \
-  crypto/sph_echo.h \
-  crypto/sph_shabal.h \
-  crypto/sph_whirlpool.h \
-  crypto/sph_sha2.h \
-  crypto/sph_haval.h \
   crypto/sph_types.h
 
 # libzerocoin library
@@ -383,7 +357,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between zenzod, and zenzo-qt and non-server tools
+# common: shared between oasisd, and oasis-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -397,9 +371,9 @@ libbitcoin_common_a_SOURCES = \
   compressor.cpp \
   consensus/merkle.cpp \
   primitives/block.cpp \
-  zpiv/deterministicmint.cpp \
+  zxos/deterministicmint.cpp \
   primitives/transaction.cpp \
-  zpiv/zerocoin.cpp \
+  zxos/zerocoin.cpp \
   core_read.cpp \
   core_write.cpp \
   hash.cpp \
@@ -448,7 +422,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between zenzo-cli and zenzo-qt
+# cli: shared between oasis-cli and oasis-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -458,16 +432,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# zenzod binary #
-zenzod_SOURCES = zenzod.cpp
-zenzod_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-zenzod_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-zenzod_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oasisd binary #
+oasisd_SOURCES = oasisd.cpp
+oasisd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+oasisd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oasisd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-zenzod_SOURCES += zenzod-res.rc
+oasisd_SOURCES += oasisd-res.rc
 endif
-zenzod_LDADD = \
+oasisd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -481,38 +455,38 @@ zenzod_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-zenzod_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+oasisd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# zenzo-cli binary #
-zenzo_cli_SOURCES = zenzo-cli.cpp
-zenzo_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-zenzo_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-zenzo_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oasis-cli binary #
+oasis_cli_SOURCES = oasis-cli.cpp
+oasis_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+oasis_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oasis_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-zenzo_cli_SOURCES += zenzo-cli-res.rc
+oasis_cli_SOURCES += oasis-cli-res.rc
 endif
 
-zenzo_cli_LDADD = \
+oasis_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-zenzo_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+oasis_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# zenzo-tx binary #
-zenzo_tx_SOURCES = zenzo-tx.cpp
-zenzo_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-zenzo_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-zenzo_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oasis-tx binary #
+oasis_tx_SOURCES = oasis-tx.cpp
+oasis_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+oasis_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oasis_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-zenzo_tx_SOURCES += zenzo-tx-res.rc
+oasis_tx_SOURCES += oasis-tx-res.rc
 endif
 
-zenzo_tx_LDADD = \
+oasis_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -520,7 +494,7 @@ zenzo_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-zenzo_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+oasis_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
@@ -570,18 +544,18 @@ CLEANFILES += univalue/*.gcda univalue/*.gcno
 CLEANFILES += wallet/*.gcda wallet/*.gcno
 CLEANFILES += wallet/test/*.gcda wallet/test/*.gcno
 CLEANFILES += zmq/*.gcda zmq/*.gcno
-CLEANFILES += zpiv/*.gcda zpiv/*.gcno
+CLEANFILES += zxos/*.gcda zxos/*.gcno
 CLEANFILES += obj/build.h
 
 EXTRA_DIST =
 
 
-config/zenzo-config.h: config/stamp-h1
+config/oasis-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/zenzo-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/oasis-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/zenzo-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/zenzo-config.h.in
+$(top_srcdir)/$(subdir)/config/oasis-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/oasis-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

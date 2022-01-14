@@ -40,9 +40,9 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
-#include "zpivchain.h"
+#include "zxoschain.h"
 
-#include "zpiv/zerocoin.h"
+#include "zxos/zerocoin.h"
 #include "libzerocoin/Denominations.h"
 #include <sstream>
 
@@ -56,7 +56,7 @@
 
 
 #if defined(NDEBUG)
-#error "ZENZO cannot be compiled without assertions."
+#error "OASIS cannot be compiled without assertions."
 #endif
 
 /**
@@ -99,7 +99,7 @@ unsigned int nCoinCacheSize = 5000;
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
-/** Fees smaller than this (in upiv) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in uxos) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -1571,23 +1571,32 @@ int64_t GetBlockValue(int nHeight)
 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
+            return 1000 * COIN;
     }
 
-    if (nHeight == 0) {
-        nSubsidy = 16800000 * COIN;
-    } else if (nHeight < 400 && nHeight > 0) {
+    const int last_pow_block = Params().GetConsensus().height_last_PoW;
+
+    if (nHeight < 480) {
+        nSubsidy = 90 * COIN; // build enough utxo's to stake after PoW phase in order to secure the chain.
+    } else if (nHeight < last_pow_block && nHeight >= 480) {
+        nSubsidy = 4671 * COIN; // remaining blocks during PoW phase mines the required balance to equal total balance at old chain snapshot (minus burn address balance).
+    } else if (nHeight < 1553600 && nHeight >= last_pow_block) {
+        nSubsidy = 0.2 * COIN;
+    } else if (nHeight < 3656000 && nHeight >= 1553600) {
         nSubsidy = 0.1 * COIN;
-    } else if (nHeight <= 10000 && nHeight >= 400) {
-        nSubsidy = 15 * COIN;
-    } else if (nHeight <= 50000 && nHeight >= 10000) {
-        nSubsidy = 13 * COIN;
-    } else if (nHeight <= 100000 && nHeight >= 50000) {
-        nSubsidy = 11 * COIN;
+    } else if (nHeight < 5758400 && nHeight >= 3656000) {
+        nSubsidy = 0.05 * COIN;
+    } else if (nHeight < 7860800 && nHeight >= 5758400) {
+        nSubsidy = 0.025 * COIN;
+    } else if (nHeight < 9963200 && nHeight >= 7860800) {
+        nSubsidy = 0.0125 * COIN;
+    } else if (nHeight < 20000000 && nHeight >= 9963200) {
+        nSubsidy = 0.00625 * COIN;
     } else {
-        nSubsidy = 9 * COIN;
+        nSubsidy = 0.003125 * COIN;
     }
     return nSubsidy;
+
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
@@ -1599,14 +1608,10 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
             return 0;
     }
 
-    // 65% for Masternodes
-    if (nHeight <= 100 && nHeight >= 0) {
-        ret = blockValue  / 100 * 0;
-    } else {
-        ret = blockValue  / 100 * 65;
-
-    }
-
+    // 75% for Masternodes
+    if (nHeight > Params().GetConsensus().height_last_PoW)
+          ret = blockValue  / 100 * 75; // 75% MN
+    
     return ret;
 }
 
@@ -1973,7 +1978,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
         const CTransaction& tx = block.vtx[i];
 
         /** UNDO ZEROCOIN DATABASING
-         * note we only undo zerocoin databasing in the following statement, value to and from ZENZO
+         * note we only undo zerocoin databasing in the following statement, value to and from OASIS
          * addresses should still be handled by the typical bitcoin based undo code
          * */
         if (tx.ContainsZerocoins()) {
@@ -2109,7 +2114,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    util::ThreadRename("zenzo-scriptch");
+    util::ThreadRename("oasis-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2198,6 +2203,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         // This logic is not necessary for memory pool transactions, as AcceptToMemoryPool
         // already refuses previously-known transaction ids entirely.
         const CCoins* coins = view.AccessCoins(tx.GetHash());
+
         if (coins && !coins->IsPruned())
             return state.DoS(100, error("ConnectBlock() : tried to overwrite transaction"),
                              REJECT_INVALID, "bad-txns-BIP30");
@@ -2286,9 +2292,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
     }
 
-    // Track zZNZ money supply in the block index
-    if (!UpdateZZNZSupply(block, pindex))
-        return state.DoS(100, error("%s: Failed to calculate new zZNZ supply for block=%s height=%d", __func__,
+    // Track zXOS money supply in the block index
+    if (!UpdateZXOSSupply(block, pindex))
+        return state.DoS(100, error("%s: Failed to calculate new zXOS supply for block=%s height=%d", __func__,
                                     block.GetHash().GetHex(), pindex->nHeight), REJECT_INVALID);
 
     // Track money supply and mint amount info
@@ -3222,19 +3228,6 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
             REJECT_INVALID, "high-hash");
 
     if (Params().IsRegTestNet()) return true;
-
-    // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
-    if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart && block.GetBlockTime() > 1578848274) {
-        if(block.nVersion < 4)
-            return state.DoS(50, error("CheckBlockHeader() : block version must be above 4 after ZerocoinStartHeight"),
-            REJECT_INVALID, "block-version");
-    } else {
-        if (block.nVersion >= 4 && block.GetBlockTime() > 1578848274 )
-            return state.DoS(50, error("CheckBlockHeader() : block version must be below 4 before ZerocoinStartHeight"),
-            REJECT_INVALID, "block-version");
-    }
-
-    return true;
 }
 
 bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
@@ -3297,7 +3290,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, !IsPoS))
-        return state.DoS(100, error("%s : CheckBlockHeader failed", __func__), REJECT_INVALID, "bad-header", true);
+      return state.DoS(100, error("%s : CheckBlockHeader failed", __func__), REJECT_INVALID, "bad-header", true);
 
     // All potential-corruption validation must be done before we do any
     // transaction validation, as otherwise we may mark the header as invalid
@@ -3387,7 +3380,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // ZENZO
+        // OASIS
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -3468,6 +3461,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     return true;
 }
 
+
 bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
 {
     // Not enforced on RegTest
@@ -3526,9 +3520,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         return state.DoS(0, error("%s : forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
     // Reject outdated version blocks
-    if ((block.nVersion < 3 && nHeight >= 1) ||
-        (block.nVersion < 4 && nHeight >= consensus.height_start_ZC) ||
-        (block.nVersion < 5 && nHeight >= consensus.height_RHF))
+    if (block.nVersion < 5 ) 
     {
         std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
         return state.Invalid(error("%s : %s", __func__, stringErr), REJECT_OBSOLETE, stringErr);
@@ -3721,23 +3713,23 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         CTransaction &stakeTxIn = block.vtx[1];
 
         // Inputs
-        std::vector<CTxIn> pivInputs;
+        std::vector<CTxIn> xosInputs;
 
         for (const CTxIn& stakeIn : stakeTxIn.vin) {
             if (!stakeIn.IsZerocoinSpend()) {
-                pivInputs.push_back(stakeIn);
+                xosInputs.push_back(stakeIn);
             }
         }
-        const bool hasPIVInputs = !pivInputs.empty();
+        const bool hasOASISInputs = !xosInputs.empty();
 
         std::vector<CBigNum> inBlockSerials;
         for (const CTransaction& tx : block.vtx) {
             for (const CTxIn& in: tx.vin) {
                 if(tx.IsCoinStake()) continue;
-                if(hasPIVInputs) {
+                if(hasOASISInputs) {
                     // Check if coinstake input is double spent inside the same block
-                    for (const CTxIn& pivIn : pivInputs)
-                        if(pivIn.prevout == in.prevout)
+                    for (const CTxIn& xosIn : xosInputs)
+                        if(xosIn.prevout == in.prevout)
                             // double spent coinstake input inside block
                             return error("%s: double spent coinstake input inside block", __func__);
                 }
@@ -3774,8 +3766,8 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                     // Loop through every input of this tx
                     for (const CTxIn& in: t.vin) {
                         // Loop through every input of the staking tx
-                        if (hasPIVInputs) {
-                            for (const CTxIn& stakeIn : pivInputs)
+                        if (hasOASISInputs) {
+                            for (const CTxIn& stakeIn : xosInputs)
                                 // check if the tx input is double spending any coinstake input
                                 if (stakeIn.prevout == in.prevout)
                                     return state.DoS(100, error("%s: input already spent on a previous block", __func__));
@@ -3988,10 +3980,13 @@ bool TestBlockValidity(CValidationState& state, const CBlock& block, CBlockIndex
     // NOTE: CheckBlockHeader is called by CheckBlock
     if (!ContextualCheckBlockHeader(block, state, pindexPrev))
         return false;
+
     if (!CheckBlock(block, state, fCheckPOW, fCheckMerkleRoot))
         return false;
+
     if (!ContextualCheckBlock(block, state, pindexPrev))
         return false;
+
     if (!ConnectBlock(block, state, &indexDummy, viewNew, true))
         return false;
     assert(state.IsValid());
@@ -4123,10 +4118,10 @@ bool static LoadBlockIndexDB(std::string& strError)
                     fBlockDatabaseForkFound = false;
                     LogPrintf("LoadBlockIndexDB() : No fork detected... (height: %i, hash: %i)\n", pindex->nHeight, pindex->GetBlockHash().ToString());
                 }
-            } else if (!fBlockDatabaseForkFound && pindex->nHeight > 1050000) { // If higher than the last auto-checkpoint, check every block (Not the most optimized)
+            } else if (!fBlockDatabaseForkFound && pindex->nHeight > 1400000) { // If higher than the last auto-checkpoint, check every block (Not the most optimized)
                 if (!Checkpoints::CheckBlock(pindex->nHeight, pindex->GetBlockHash())) {
                     fBlockDatabaseForkFound = true;
-                    LogPrintf("LoadBlockIndexDB() : (>1050000) Possible fork detected, but we have no more checkpoints to compare against, assuming irreversibly forked...\n");
+                    LogPrintf("LoadBlockIndexDB() : (>1400000) Possible fork detected, but we have no more checkpoints to compare against, assuming irreversibly forked...\n");
                 }
                 // No need to revert the flag here, as we'll be spammed with "good" blocks that do not have a checkpoint paired
             }
@@ -4633,7 +4628,7 @@ std::string GetWarnings(std::string strFor)
     } else if (fLargeWorkInvalidChainFound) {
         strStatusBar = strRPC = _("Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.");
     } else if (fBlockDatabaseForkFound) {
-        strStatusBar = strRPC = _("Warning: Your blockchain doesn't match the required checkpoints! You have forked, please resync ZENZO Core.");
+        strStatusBar = strRPC = _("Warning: Your blockchain doesn't match the required checkpoints! You have forked, please resync OASIS Core.");
     }
 
     if (strFor == "statusbar")
@@ -4993,7 +4988,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             return true;
         }
 
-        // ZENZO: We use certain sporks during IBD, so check to see if they are
+        // OASIS: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) ||
@@ -5771,7 +5766,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    // SPORK_15 is used for 70005 (v2.0+)
     if (sporkManager.IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 

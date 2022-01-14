@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/oasis-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -171,7 +171,7 @@ void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset){
 
 void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
     if (!settings.contains("nDisplayUnit") || reset)
-        settings.setValue("nDisplayUnit", BitcoinUnits::PIV);
+        settings.setValue("nDisplayUnit", BitcoinUnits::XOS);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
     if (!settings.contains("digits") || reset)
         settings.setValue("digits", "2");
@@ -187,6 +187,7 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");
     strThirdPartyTxUrls = settings.value("strThirdPartyTxUrls", "").toString();
+    fHideCharts = GetBoolArg("-hidecharts", false);
 
     if(reset){
         refreshDataView();
@@ -199,7 +200,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in zenzo.cpp during shutdown to also remove the window positions
+    resetSettings = true; // Needed in oasis.cpp during shutdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -274,6 +275,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nDatabaseCache");
         case ThreadsScriptVerif:
             return settings.value("nThreadsScriptVerif");
+        case HideCharts:
+             return fHideCharts;
         case HideZeroBalances:
             return settings.value("fHideZeroBalances");
         case HideOrphans:
@@ -385,6 +388,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
+        case HideCharts:
+             fHideCharts = value.toBool();   // memory only
+             Q_EMIT hideChartsChanged(fHideCharts);
+             break;
         case HideZeroBalances:
             fHideZeroBalances = value.toBool();
             settings.setValue("fHideZeroBalances", fHideZeroBalances);

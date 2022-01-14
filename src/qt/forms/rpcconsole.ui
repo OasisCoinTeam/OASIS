@@ -356,7 +356,7 @@
        <item row="17" column="0">
         <widget class="QPushButton" name="openDebugLogfileButton">
          <property name="toolTip">
-          <string>Open the ZENZO debug log file from the current data directory. This can take a few seconds for large log files.</string>
+          <string>Open the OASIS debug log file from the current data directory. This can take a few seconds for large log files.</string>
          </property>
          <property name="text">
           <string>&amp;Open</string>
@@ -425,7 +425,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../zenzo.qrc">
+            <iconset resource="../oasis.qrc">
              <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
            </property>
            <property name="shortcut">
@@ -1328,7 +1328,7 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="wallet_customzpivbackuppath_label">
+        <widget class="QLabel" name="wallet_customzxosbackuppath_label">
          <property name="visible">
           <bool>false</bool>
          </property>
@@ -1338,7 +1338,7 @@
         </widget>
        </item>
        <item row="4" column="1" colspan="3">
-        <widget class="QLabel" name="wallet_customzpivbackuppath">
+        <widget class="QLabel" name="wallet_customzxosbackuppath">
          <property name="cursor">
           <cursorShape>IBeamCursor</cursorShape>
          </property>
@@ -1669,7 +1669,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../zenzo.qrc"/>
+  <include location="../oasis.qrc"/>
  </resources>
  <connections/>
 </ui>

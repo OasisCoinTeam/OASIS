@@ -11,7 +11,7 @@
 #include "main.h"
 #include "txdb.h"
 
-bool RecalculateZNZSupply(int nHeightStart, bool fSkipZC)
+bool RecalculateXOSSupply(int nHeightStart, bool fSkipZC)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
     const int chainHeight = chainActive.Height();
@@ -25,12 +25,12 @@ bool RecalculateZNZSupply(int nHeightStart, bool fSkipZC)
     nBurnedCoins = 0;
     pblocktree->WriteInt("burned", 0);
 
-    uiInterface.ShowProgress(_("Recalculating ZNZ supply... "), 0);
+    uiInterface.ShowProgress(_("Recalculating XOS supply... "), 0);
     while (true) {
         if (pindex->nHeight % 5000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)((pindex->nHeight - nHeightStart) * 100) / (chainHeight - nHeightStart))));
-            uiInterface.ShowProgress(_("Recalculating ZNZ supply... "), percent);
+            uiInterface.ShowProgress(_("Recalculating XOS supply... "), percent);
         }
 
         CBlock block;
@@ -46,7 +46,7 @@ bool RecalculateZNZSupply(int nHeightStart, bool fSkipZC)
 
                 if (tx.vin[i].IsZerocoinSpend()) {
                     nValueIn += tx.vin[i].nSequence * COIN;
-                    nBurnedCoins -= tx.vin[i].nSequence * COIN; // Zerocoin spends 're-introduce' supply to ZNZ
+                    nBurnedCoins -= tx.vin[i].nSequence * COIN; // Zerocoin spends 're-introduce' supply to XOS
                     fBlockHasZerocoin = true;
                     continue;
                 }
@@ -89,9 +89,9 @@ bool RecalculateZNZSupply(int nHeightStart, bool fSkipZC)
         pindex->nMoneySupply = nSupplyPrev + nBlockValue;
         nSupplyPrev = pindex->nMoneySupply;
 
-        // Rewrite zZNZ supply too
+        // Rewrite zXOS supply too
         if (!fSkipZC && pindex->nHeight >= consensus.height_start_ZC) {
-            UpdateZZNZSupply(block, pindex);
+            UpdateZXOSSupply(block, pindex);
         }
 
         assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
@@ -112,7 +112,7 @@ bool RecalculateZNZSupply(int nHeightStart, bool fSkipZC)
     return true;
 }
 
-bool UpdateZZNZSupply(const CBlock& block, CBlockIndex* pindex)
+bool UpdateZXOSSupply(const CBlock& block, CBlockIndex* pindex)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
     if (pindex->nHeight < consensus.height_start_ZC)
@@ -125,14 +125,14 @@ bool UpdateZZNZSupply(const CBlock& block, CBlockIndex* pindex)
     if (pindex->nHeight > consensus.height_last_ZC_AccumCheckpoint)
         return true;
 
-    // Add mints to zZNZ supply
+    // Add mints to zXOS supply
     std::list<CZerocoinMint> listMints;
     BlockToZerocoinMintList(block, listMints, true);
     for (const auto& m : listMints) {
         pindex->mapZerocoinSupply.at(m.GetDenomination())++;
     }
 
-    // Remove spends from zZNZ supply
+    // Remove spends from zXOS supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const auto& denom : listDenomsSpent) {
         pindex->mapZerocoinSupply.at(denom)--;

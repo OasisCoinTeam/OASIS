@@ -11,10 +11,10 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/loadingdialog.h"
-#include "qt/pivx/defaultdialog.h"
-#include "qt/pivx/pivxgui.h"
+#include "qt/oasis/qtutils.h"
+#include "qt/oasis/loadingdialog.h"
+#include "qt/oasis/defaultdialog.h"
+#include "qt/oasis/oasisgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -183,12 +183,12 @@ void AskPassphraseDialog::accept()
         bool ret = openStandardDialog(
                 tr("Confirm wallet encryption"),
                 "<b>" + tr("WARNING") + ":</b> " + tr("If you encrypt your wallet and lose your passphrase, you will") +
-                " <b>" + tr("LOSE ALL OF YOUR ZNZ") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                " <b>" + tr("LOSE ALL OF YOUR XOS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
         if (ret) {
             newpassCache = newpass1;
-            ZENZOGUI* window = static_cast<ZENZOGUI*>(parentWidget());
+            OASISGUI* window = static_cast<OASISGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -336,7 +336,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
 {
-    ZENZOGUI* gui = static_cast<ZENZOGUI*>(parentWidget());
+    OASISGUI* gui = static_cast<OASISGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -349,13 +349,13 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
 void AskPassphraseDialog::warningMessage()
 {
     hide();
-    static_cast<ZENZOGUI*>(parentWidget())->showHide(true);
+    static_cast<OASISGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("ZENZO will close now to finish the encryption process. "
+            tr("OASIS will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
-               "your ZNZ from being stolen by malware infecting your computer.") +
+               "your XOS from being stolen by malware infecting your computer.") +
             "<br><br><b>" +
             tr("IMPORTANT: Any previous backups you have made of your wallet file "
                "should be replaced with the newly generated, encrypted wallet file. "
