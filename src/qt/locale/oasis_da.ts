@@ -1494,9 +1494,9 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</source>
+https://www.transifex.com/oasis-project/oasis-project-translations</source>
         <translation>Det valgte sprog mangler, eller oversættelsen er mangelfuld. Hjælp ved at bidrage med oversættelser her:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</translation>
+https://www.transifex.com/oasis-project/oasis-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

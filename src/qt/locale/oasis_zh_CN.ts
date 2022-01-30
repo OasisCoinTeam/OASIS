@@ -2149,9 +2149,9 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</source>
+https://www.transifex.com/oasis-project/oasis-project-translations</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</translation>
+https://www.transifex.com/oasis-project/oasis-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

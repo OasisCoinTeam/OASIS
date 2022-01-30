@@ -1851,9 +1851,9 @@ Sind sie sicher?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</source>
+https://www.transifex.com/oasis-project/oasis-project-translations</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</translation>
+https://www.transifex.com/oasis-project/oasis-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

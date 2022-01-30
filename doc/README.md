@@ -3,7 +3,7 @@ OASIS Core
 
 Setup
 ---------------------
-[OASIS Core] https://github.com/OasisCoinTeam/oasis) is the original OASIS client and it builds the backbone of the network. However, it downloads and stores the entire history of OASIS transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[OASIS Core] https://github.com/gdiscord/oasis) is the original OASIS client and it builds the backbone of the network. However, it downloads and stores the entire history of OASIS transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -52,7 +52,7 @@ The OASIS repo's [root README](/README.md) contains relevant information on the 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* [OASIS] Website at http://www.oasisco.in/.
+* [OASIS] Website at http://www.exploreoasis.com/.
 * Join the [OASIS Discord](https://discord.gg/apAvMsy).
 
 ### Miscellaneous
