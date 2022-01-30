@@ -20,22 +20,22 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://oasisco.in/
-Source0:	https://oasisco.in/bin/oasis-core-%{version}/oasis-%{version}.tar.gz
+URL:		https://oasis.org/
+Source0:	https://oasis.org/bin/oasis-core-%{version}/oasis-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/contrib/debian/examples/oasis.conf
+Source10:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/contrib/debian/examples/oasis.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/doc/man/oasisd.1
-Source21:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/doc/man/oasis-cli.1
-Source22:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/doc/man/oasis-qt.1
+Source20:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/doc/man/oasisd.1
+Source21:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/doc/man/oasis-cli.1
+Source22:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/doc/man/oasis-qt.1
 
 #selinux
-Source30:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/contrib/rpm/oasis.te
+Source30:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/contrib/rpm/oasis.te
 # Source31 - what about oasis-tx and bench_oasis ???
-Source31:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/contrib/rpm/oasis.fc
-Source32:	https://raw.githubusercontent.com/OasisCoinTeam/oasis/v%{version}/contrib/rpm/oasis.if
+Source31:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/contrib/rpm/oasis.fc
+Source32:	https://raw.githubusercontent.com/oasis-project/oasis/v%{version}/contrib/rpm/oasis.if
 
 Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg
 

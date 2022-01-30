@@ -43,7 +43,7 @@ Build OASIS Core
 
 1. Clone the OASIS Core source code:
 
-        git clone https://github.com/OasisCoinTeam/oasis
+        git clone https://github.com/oasis-project/oasis
         cd oasis
 
 2.  Make the Homebrew OpenSSL headers visible to the configure script  (do ```brew info openssl``` to find out why this is necessary, or if you use Homebrew with installation folders different from the default).

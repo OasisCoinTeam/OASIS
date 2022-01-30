@@ -402,7 +402,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</string>
+https://www.transifex.com/oasis-project/oasis-project-translations</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

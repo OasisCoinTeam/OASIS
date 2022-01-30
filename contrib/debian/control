@@ -28,9 +28,9 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://www.oasisco.in
-Vcs-Git: git://github.com/OasisCoinTeam/oasis.git
-Vcs-Browser: http://github.com/OasisCoinTeam/oasis
+Homepage: http://www.oasis.org
+Vcs-Git: git://github.com/OASIS-Project/OASIS.git
+Vcs-Browser: http://github.com/OASIS-Project/OASIS
 
 Package: oasisd
 Architecture: any

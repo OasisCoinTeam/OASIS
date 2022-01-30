@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(zenzo)
+project(oasis)
 
 set(BDB_VER "4.8.30")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/contrib/cmake")
@@ -31,7 +31,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         message(STATUS "Compiling on WSL")
         set(ENV{DISPLAY} ":0")
         set(ENV{LIBGL_ALWAYS_INDIRECT} 1)
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/zenzo-run)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/oasis-run)
         message(WARNING "WSL Runtime support requires VcXsrv to be installed and running")
     else()
         message(STATUS "Compiling on Linux")
@@ -85,8 +85,8 @@ else()
     )
 endif()
 
-# run configure if zenzo_config.h doesn't exist
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/zenzo-config.h")
+# run configure if oasis_config.h doesn't exist
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/oasis-config.h")
 else()
     execute_process(
             COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} ${BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS} ${SSL_CONFIGURE_FLAGS}
@@ -537,13 +537,13 @@ link_directories(
         ${CMAKE_SOURCE_DIR}/src/secp256k1/.libs
 )
 
-set(zenzo-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzo-cli.cpp)
+set(oasis-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasis-cli.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND zenzo-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzo-cli-res.rc)
+    list(APPEND oasis-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasis-cli-res.rc)
 endif()
-add_executable(zenzo-cli ${zenzo-cli_SOURCES})
-add_dependencies(zenzo-cli libunivalue)
-target_link_libraries(zenzo-cli
+add_executable(oasis-cli ${oasis-cli_SOURCES})
+add_dependencies(oasis-cli libunivalue)
+target_link_libraries(oasis-cli
         CLI_A
         univalue
         UTIL_A
@@ -551,16 +551,16 @@ target_link_libraries(zenzo-cli
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB}
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(zenzo-cli ${WINDOWS_LDADD})
+    target_link_libraries(oasis-cli ${WINDOWS_LDADD})
 endif()
 
-set(zenzo-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzo-tx.cpp)
+set(oasis-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasis-tx.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND zenzo-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzo-tx-res.rc)
+    list(APPEND oasis-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasis-tx-res.rc)
 endif()
-add_executable(zenzo-tx ${zenzo-tx_SOURCES})
-add_dependencies(zenzo-tx libunivalue libsecp256k1)
-target_link_libraries(zenzo-tx
+add_executable(oasis-tx ${oasis-tx_SOURCES})
+add_dependencies(oasis-tx libunivalue libsecp256k1)
+target_link_libraries(oasis-tx
         univalue
         COMMON_A
         ZEROCOIN_A
@@ -570,26 +570,26 @@ target_link_libraries(zenzo-tx
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB}
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(zenzo-tx ${WINDOWS_LDADD})
+    target_link_libraries(oasis-tx ${WINDOWS_LDADD})
 endif()
 if(GMP_FOUND)
-    target_link_libraries(zenzo-tx ${GMP_LIBRARY})
+    target_link_libraries(oasis-tx ${GMP_LIBRARY})
 endif()
 
 link_directories(${CMAKE_BINARY_DIR})
 
-set(zenzod_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzod.cpp)
+set(oasisd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasisd.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND zenzod_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/zenzod-res.rc)
+    list(APPEND oasisd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/oasisd-res.rc)
 endif()
-add_executable(zenzod ${zenzod_SOURCES} ${BitcoinHeaders})
-add_dependencies(zenzod libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
-target_include_directories(zenzod PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
+add_executable(oasisd ${oasisd_SOURCES} ${BitcoinHeaders})
+add_dependencies(oasisd libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
+target_include_directories(oasisd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
         ${LIBEVENT_INCLUDE_DIR})
-target_link_libraries(zenzod
+target_link_libraries(oasisd
         pthread
         SERVER_A
         WALLET_A
@@ -606,22 +606,22 @@ target_link_libraries(zenzod
         )
 if($ENV{target} MATCHES "Windows")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wstack-protector -fstack-protector-all -fPIE -pipe -O2 -pthread -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie --static")
-    target_link_libraries(zenzod ${WINDOWS_LDADD})
+    target_link_libraries(oasisd ${WINDOWS_LDADD})
 endif()
 if(GMP_FOUND)
-    target_link_libraries(zenzod ${GMP_LIBRARY})
-    target_include_directories(zenzod PUBLIC ${GMP_INCLUDE_DIR})
+    target_link_libraries(oasisd ${GMP_LIBRARY})
+    target_include_directories(oasisd PUBLIC ${GMP_INCLUDE_DIR})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(zenzod ZMQ_A ${ZMQ_LIB})
-    target_include_directories(zenzod PUBLIC ${ZMQ_INCLUDE_DIR})
+    target_link_libraries(oasisd ZMQ_A ${ZMQ_LIB})
+    target_include_directories(oasisd PUBLIC ${ZMQ_INCLUDE_DIR})
 endif()
 if(MINIUPNP_FOUND)
-    target_compile_definitions(zenzod PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
-    target_link_libraries(zenzod ${MINIUPNP_LIBRARY})
-    target_include_directories(zenzod PUBLIC ${MINIUPNP_INCLUDE_DIR})
+    target_compile_definitions(oasisd PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
+    target_link_libraries(oasisd ${MINIUPNP_LIBRARY})
+    target_include_directories(oasisd PUBLIC ${MINIUPNP_INCLUDE_DIR})
 endif()
 
-target_link_libraries(zenzod -lpthread)
+target_link_libraries(oasisd -lpthread)
 
 add_subdirectory(src/qt)

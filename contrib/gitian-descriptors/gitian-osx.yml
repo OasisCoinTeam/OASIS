@@ -29,7 +29,7 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/OasisCoinTeam/oasis.git"
+- "url": "https://github.com/OasisCoinTeam/Oasis.git"
   "dir": "oasis"
 files:
 - "MacOSX10.11.sdk.tar.gz"

@@ -1085,9 +1085,9 @@
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</source>
+https://www.transifex.com/oasis-project/oasis-project-translations</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodima ovdje:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</translation>
+https://www.transifex.com/oasis-project/oasis-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

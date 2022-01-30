@@ -1,10 +1,10 @@
 (note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-OASIS Core version *version* is now available from:  <https://github.com/OasisCoinTeam/oasis/releases>
+OASIS Core version *version* is now available from:  <https://github.com/oasis-project/oasis/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/OasisCoinTeam/oasis/issues>
+Please report bugs using the issue tracker at github: <https://github.com/oasis-project/oasis/issues>
 
 
 Mandatory Update
@@ -43,7 +43,7 @@ As well as new possibilities like the account extended public key that enables d
 
 This work includes a customization/extension to the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) standard. We have included an unique staking keys derivation path which introduced the deterministic generation/recovery of staking addresses.
 
-An extended description of this large work can be found in the PR [here](https://github.com/OasisCoinTeam/oasis/pull/1327).
+An extended description of this large work can be found in the PR [here](https://github.com/gdiscord/oasis/pull/1327).
 
 #### HD Wallet FAQ
 
@@ -78,7 +78,7 @@ The default value for the stake-split threshold has been lowered from 2000 XOS, 
 Dependencies
 ------------
 
-The minimum required version of QT has been increased from 5.0 to 5.5.1 (the [depends system](https://github.com/OasisCoinTeam/oasis/blob/master/depends/README.md) provides 5.9.7)
+The minimum required version of QT has been increased from 5.0 to 5.5.1 (the [depends system](https://github.com/oasis-project/oasis/blob/master/depends/README.md) provides 5.9.7)
 
 
 RPC Changes
@@ -157,17 +157,17 @@ Detailed release notes follow. This overview includes changes that affect behavi
 
 ### P2P Protocol and Network Code
 
-The p2p alert system has been removed in [#1372](https://github.com/OasisCoinTeam/oasis/pull/1372) and the 'alert' message is no longer supported.
+The p2p alert system has been removed in [#1372](https://github.com/gdiscord/oasis/pull/1372) and the 'alert' message is no longer supported.
 
 ### GUI
 
-Keyboard navigation: dialogs can now be accepted with the `ENTER` (`RETURN`) key, and dismissed with the `ESC` key ([#1392](https://github.com/OasisCoinTeam/oasis/pull/1392)).
+Keyboard navigation: dialogs can now be accepted with the `ENTER` (`RETURN`) key, and dismissed with the `ESC` key ([#1392](https://github.com/gdiscord/oasis/pull/1392)).
 
 ### RPC/REST
 
 ### Wallet
 
-The `-reservebalance` configuration/startup option has been removed ([PR #1373](https://github.com/OasisCoinTeam/oasis/pull/1373)).
+The `-reservebalance` configuration/startup option has been removed ([PR #1373](https://github.com/gdiscord/oasis/pull/1373)).
 
 ### Miscellaneous
 
@@ -176,4 +176,4 @@ The `-reservebalance` configuration/startup option has been removed ([PR #1373](
 Thanks to everyone who directly contributed to this release:
 
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/OasisCoinTeam-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/oasis-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

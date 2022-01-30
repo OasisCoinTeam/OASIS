@@ -196,9 +196,9 @@ public:
         vSeeds.push_back(CDNSSeedData("seedone.oasisco.in", "seedone.oasisco.in"));
         vSeeds.push_back(CDNSSeedData("seedtwo.oasisco.in", "seedtwo.oasisco.in"));
         vSeeds.push_back(CDNSSeedData("seedthree.oasisco.in", "seedthree.oasisco.in"));
-        //vSeeds.push_back(CDNSSeedData("seedfour.oasisco.in", "seedone.oasisco.in"));
-        //vSeeds.push_back(CDNSSeedData("seedfive.oasisco.in", "seedtwo.oasisco.in"));
-       // vSeeds.push_back(CDNSSeedData("seedsix.oasisco.in", "seedthree.oasisco.in"));
+        vSeeds.push_back(CDNSSeedData("seedfour.oasisco.in", "seedone.oasisco.in"));
+        vSeeds.push_back(CDNSSeedData("seedfive.oasisco.in", "seedtwo.oasisco.in"));
+        vSeeds.push_back(CDNSSeedData("seedsix.oasisco.in", "seedthree.oasisco.in"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 115);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 15);

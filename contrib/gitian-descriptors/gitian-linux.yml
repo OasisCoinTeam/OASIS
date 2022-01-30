@@ -33,7 +33,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/OasisCoinTeam/oasis.git"
+- "url": "https://github.com/OasisCoinTeam/Oasis.git"
   "dir": "oasis"
 files: []
 script: |

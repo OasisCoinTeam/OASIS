@@ -1356,9 +1356,9 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations</source>
+https://www.transifex.com/oasis-project/oasis-project-translations</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-https://www.transifex.com/OasisCoinTeam/oasisCoinTeam-translations </translation>
+https://www.transifex.com/oasis-project/oasis-project-translations </translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
